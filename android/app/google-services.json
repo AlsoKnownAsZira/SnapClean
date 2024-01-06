@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "941468134263",
+    "project_id": "snapclean-fddf8",
+    "storage_bucket": "snapclean-fddf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941468134263:android:31575fe6c6e2b074590f72",
+        "android_client_info": {
+          "package_name": "com.theunity.snapclean"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941468134263-7banfkl25d2rv1058rruu2kplhrf247c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAieX_AUJTsABmq8wORU9Q7Otc2Q1JvlKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941468134263-7banfkl25d2rv1058rruu2kplhrf247c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

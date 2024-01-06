@@ -1,4 +1,4 @@
-package com.example.snapclean
+package com.theunity.snapclean
 
 import io.flutter.embedding.android.FlutterActivity
 
