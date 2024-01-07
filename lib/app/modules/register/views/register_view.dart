@@ -20,11 +20,11 @@ class RegisterView extends GetView<RegisterController> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Create Your Account",
+                  "Buat Akun Anda",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
-                      color: Colors.green),
+                      color: Colors.black),
                 ),
               ),
             ),
@@ -45,49 +45,50 @@ class RegisterView extends GetView<RegisterController> {
                   SnapTextField(
                     labelText: 'Email',
                     controller: controller.emailController,
-                    hintText: 'Example: name@gmail.com',
+                    hintText: 'Contoh: email@gmail.com',
                   ),
                   verticalSpace(24),
                   SnapTextField(
-                    labelText: 'Name',
+                    labelText: 'Nama',
                     controller: controller.nameController,
-                    hintText: 'Type your name',
+                    hintText: 'Masukkan Nama Anda',
                   ),
                   verticalSpace(24),
                   SnapTextField(
                       labelText: 'Password',
                       controller: controller.passwordController,
                       obscureText: true,
-                      hintText: 'Type your password'),
+                      hintText: 'Masukkan password anda'),
                   verticalSpace(24),
                   SnapTextField(
-                    labelText: 'Confirmation Password',
+                    labelText: 'Konfirmasi Password',
                     controller: controller.reTypePasswordController,
                     obscureText: true,
-                    hintText: 'Retype your password',
+                    hintText: 'Masukkan password anda kembali',
                   ),
                   verticalSpace(24),
                   SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green),
-                              onPressed: () {
-                                if (controller.passwordController.text ==
-                                    controller.reTypePasswordController.text) {
-                                } else {
-                                  // context.showSnackBar(
-                                  //     'Your confirmation password is not the same');
-                                }
-                              },
-                              child: const Text(
-                                "Register",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            ),
-                          ),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 145, 231, 131)),
+                      onPressed: () {
+                        if (controller.passwordController.text ==
+                            controller.reTypePasswordController.text) {
+                          Get.offNamed('/login');
+                        } else {
+                          // context.showSnackBar(
+                          //     'Your confirmation password is not the same');
+                        }
+                      },
+                      child: const Text(
+                        "Daftar",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                    ),
+                  ),
                   // switch (ref.watch(userDataProvider)) {
                   //   AsyncData(:final value) => value == null
                   //       ? SizedBox(
@@ -123,14 +124,16 @@ class RegisterView extends GetView<RegisterController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Already have an account?"),
+                      const Text("Sudah punya akun?"),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.offNamed('/login');
+                          },
                           child: const Text(
-                            'Sign In',
+                            'Masuk',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.green),
+                                color: Color.fromARGB(255, 72, 192, 134)),
                           ))
                     ],
                   )

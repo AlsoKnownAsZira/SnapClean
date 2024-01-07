@@ -27,33 +27,40 @@ class LoginView extends GetView<LoginController> {
             SnapTextField(
                 labelText: 'Email',
                 controller: controller.emailController,
-                hintText: 'Type your email'),
+                hintText: 'Masukkan Email'),
             verticalSpace(24),
             SnapTextField(
                 labelText: 'Password',
                 controller: controller.passwordController,
                 obscureText: true,
-                hintText: 'Type your password'),
+                hintText: 'Masukkan password'),
             verticalSpace(8),
             const Align(
               alignment: Alignment.centerRight,
               child: Text(
-                'Forgot password?',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                'Lupa Password?',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 72, 192, 134)),
               ),
             ),
             verticalSpace(24),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-              onPressed: () {
-                // ref.read(userDataProvider.notifier).login(
-                //     email: emailController.text,
-                //     password: passwordController.text);
-              },
-              child: const Text(
-                "Login",
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 145, 231, 131)),
+                onPressed: () {
+                  Get.offNamed('/home');
+                  // ref.read(userDataProvider.notifier).login(
+                  //     email: emailController.text,
+                  //     password: passwordController.text);
+                },
+                child: const Text(
+                  "Masuk",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ),
             ),
             // switch (ref.watch(userDataProvider)) {
@@ -86,13 +93,16 @@ class LoginView extends GetView<LoginController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Don't have an account?"),
+                const Text("Belum punya akun?"),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                        Get.offNamed('/register');
+                    },
                     child: const Text(
-                      'Sign Up',
+                      'Daftar',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.green),
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 72, 192, 134)),
                     ))
               ],
             )

@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/camera/bindings/camera_binding.dart';
+import '../modules/camera/views/camera_view.dart';
+import '../modules/confirm_report/bindings/confirm_report_binding.dart';
+import '../modules/confirm_report/views/confirm_report_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -12,7 +16,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.CONFIRM_REPORT;
 
   static final routes = [
     GetPage(
@@ -29,6 +33,16 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.CAMERA,
+      page: () => const CameraView(),
+      binding: CameraBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONFIRM_REPORT,
+      page: () => const ConfirmReportView(),
+      binding: ConfirmReportBinding(),
     ),
   ];
 }
