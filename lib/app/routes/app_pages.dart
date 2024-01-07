@@ -1,5 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/camera/bindings/camera_binding.dart';
+import '../modules/camera/views/camera_view.dart';
+import '../modules/confirm_report/bindings/confirm_report_binding.dart';
+import '../modules/confirm_report/views/confirm_report_view.dart';
 import '../modules/history/bindings/history_binding.dart';
 import '../modules/history/views/history_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -31,6 +35,16 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => const RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.CAMERA,
+      page: () => const CameraView(),
+      binding: CameraBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONFIRM_REPORT,
+      page: () => const ConfirmReportView(),
+      binding: ConfirmReportBinding(),
     ),
     GetPage(
       name: _Paths.HISTORY,
