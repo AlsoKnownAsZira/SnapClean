@@ -9,7 +9,13 @@ abstract class Routes {
   static const CAMERA = _Paths.CAMERA;
   static const CONFIRM_REPORT = _Paths.CONFIRM_REPORT;
   static const HISTORY = _Paths.HISTORY;
+
   static const REWARD = _Paths.REWARD;
+
+  static const DETAIL_REPORT = _Paths.DETAIL_REPORT;
+  static const PROFILE = _Paths.PROFILE;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+
 }
 
 abstract class _Paths {
@@ -20,5 +26,11 @@ abstract class _Paths {
   static const CAMERA = '/camera';
   static const CONFIRM_REPORT = '/confirm-report';
   static const HISTORY = '/history';
+
   static const REWARD = '/reward';
+
+  static const DETAIL_REPORT = '/detail-report';
+  static const PROFILE = '/profile';
+  static const EDIT_PROFILE = '/edit-profile';
+
 }

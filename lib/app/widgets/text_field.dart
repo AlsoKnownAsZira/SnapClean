@@ -24,8 +24,8 @@ class SnapTextField extends StatelessWidget {
           labelStyle: const TextStyle(color: Colors.black),
           enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey.shade700)),
-          focusedBorder:
-              const OutlineInputBorder(borderSide: BorderSide(color: Colors.green))),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green))),
     );
   }
 }
