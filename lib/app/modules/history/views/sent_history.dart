@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snapclean/app/modules/detail_report/views/detail_report_view.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
 class SentHistory extends StatefulWidget {
@@ -18,7 +19,13 @@ class _SentHistoryState extends State<SentHistory> {
             return Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetailReportView()),
+                    );
+                  },
                   child: Container(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
