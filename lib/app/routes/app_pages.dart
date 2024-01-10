@@ -12,13 +12,15 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/reward/bindings/reward_binding.dart';
+import '../modules/reward/views/reward_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.REWARD;
 
   static final routes = [
     GetPage(
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.HISTORY,
       page: () => HistoryView(initialTabIndex: 0),
       binding: HistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.REWARD,
+      page: () => const RewardView(),
+      binding: RewardBinding(),
     ),
   ];
 }
