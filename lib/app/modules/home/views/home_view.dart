@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
+import 'package:snapclean/app/widgets/spline_chart.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -56,7 +57,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         horizontalSpace(20),
                         SizedBox(
-                          width: 230,
+                          width: 210,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -157,7 +158,36 @@ class HomeView extends GetView<HomeController> {
                     aspectRatio: 2.0,
                     initialPage: 2,
                   ),
-                )
+                ),
+                verticalSpace(12),
+                Obx(() => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              "${controller.dropdownvalue.value}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: controller.dropdownvalue.value,
+                          items: controller.months
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (dynamic newValue) {
+                            controller.dropdownvalue.value = newValue;
+                          },
+                        )
+                      ],
+                    )),
+                SplineChart()
               ],
             ),
           ),

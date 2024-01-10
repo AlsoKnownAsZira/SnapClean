@@ -1,23 +1,6 @@
 import 'package:get/get.dart';
-
+import 'package:flutter/material.dart';
 class ConfirmReportController extends GetxController {
-  //TODO: Implement ConfirmReportController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 }
