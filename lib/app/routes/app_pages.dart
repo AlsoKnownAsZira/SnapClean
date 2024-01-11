@@ -28,7 +28,10 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CONFIRM_REPORT;
+
+  static const INITIAL = Routes.CAMERA;
+
+
 
   static final routes = [
     GetPage(
@@ -48,7 +51,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CAMERA,
-      page: () => const CameraView(),
+      page: () =>  CameraView(),
       binding: CameraBinding(),
     ),
     GetPage(
