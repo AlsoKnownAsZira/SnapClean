@@ -14,9 +14,8 @@ void main() async {
 
   runApp(
     GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes
-    ),
+        title: "Application",
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes),
   );
 }

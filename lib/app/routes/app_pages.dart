@@ -4,6 +4,8 @@ import '../modules/camera/bindings/camera_binding.dart';
 import '../modules/camera/views/camera_view.dart';
 import '../modules/confirm_report/bindings/confirm_report_binding.dart';
 import '../modules/confirm_report/views/confirm_report_view.dart';
+import '../modules/current_location/bindings/current_location_binding.dart';
+import '../modules/current_location/views/current_location_view.dart';
 import '../modules/detail_report/bindings/detail_report_binding.dart';
 import '../modules/detail_report/views/detail_report_view.dart';
 import '../modules/edit_profile/bindings/edit_profile_binding.dart';
@@ -26,7 +28,9 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
+
   static const INITIAL = Routes.CAMERA;
+
 
 
   static final routes = [
@@ -61,11 +65,10 @@ class AppPages {
       binding: HistoryBinding(),
     ),
     GetPage(
-      name: _Paths.REWARD,
-      page: () => const RewardView(),
-      binding: RewardBinding()
-    ),
-         GetPage(
+        name: _Paths.REWARD,
+        page: () => const RewardView(),
+        binding: RewardBinding()),
+    GetPage(
       name: _Paths.DETAIL_REPORT,
       page: () => const DetailReportView(),
       binding: DetailReportBinding(),
@@ -79,6 +82,11 @@ class AppPages {
       name: _Paths.EDIT_PROFILE,
       page: () => const EditProfileView(),
       binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CURRENT_LOCATION,
+      page: () => const CurrentLocationScreen(),
+      binding: CurrentLocationBinding(),
     ),
   ];
 }
