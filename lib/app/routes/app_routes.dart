@@ -15,7 +15,7 @@ abstract class Routes {
   static const DETAIL_REPORT = _Paths.DETAIL_REPORT;
   static const PROFILE = _Paths.PROFILE;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
-
+  static const CURRENT_LOCATION = _Paths.CURRENT_LOCATION;
 }
 
 abstract class _Paths {
@@ -32,5 +32,5 @@ abstract class _Paths {
   static const DETAIL_REPORT = '/detail-report';
   static const PROFILE = '/profile';
   static const EDIT_PROFILE = '/edit-profile';
-
+  static const CURRENT_LOCATION = '/current-location';
 }
