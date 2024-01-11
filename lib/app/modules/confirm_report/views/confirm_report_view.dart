@@ -1,10 +1,9 @@
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
-import '../controllers/confirm_report_controller.dart';
 import '../../../widgets/sized_box.dart';
-import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+import '../controllers/confirm_report_controller.dart';
 
 class ConfirmReportView extends GetView<ConfirmReportController> {
   const ConfirmReportView({Key? key}) : super(key: key);
@@ -41,7 +40,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                     ),
                   ))),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Center(
                   child: Container(
                     width: 150,
@@ -55,7 +54,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
               ),
               verticalSpace(20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Center(
                   child: Row(
                     children: [
@@ -66,8 +65,10 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                             color: Colors.grey,
                           ),
                           child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
+                              onPressed: () {
+                                Get.offNamed('/current-location');
+                              },
+                              icon: const Icon(
                                 Icons.pin_drop,
                                 color: Colors.red,
                               ))),
@@ -106,8 +107,8 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                     selectedBorderColor: Colors.transparent,
                     unSelectedBorderColor: Colors.transparent,
                     absoluteZeroSpacing: true,
-                    buttonLables: ['Sendiri', 'Petugas'],
-                    buttonValues: ['sendiri', 'petugas'],
+                    buttonLables: const ['Sendiri', 'Petugas'],
+                    buttonValues: const ['sendiri', 'petugas'],
                     radioButtonValue: (_) {},
                     unSelectedColor: Colors.grey,
                     selectedColor: Colors.green,
@@ -122,7 +123,6 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                       color: Colors.white,
                       border: Border.all(color: Colors.grey, width: 2)),
                   height: 150,
-                
                   width: double.infinity,
                   child: TextField(
                     minLines: 10,
