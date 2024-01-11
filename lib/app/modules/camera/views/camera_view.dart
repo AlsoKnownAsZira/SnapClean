@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-
 import '../controllers/camera_controller.dart';
 import '../../../widgets/sized_box.dart';
 
 class CameraView extends GetView<CameraController> {
-  const CameraView({Key? key}) : super(key: key);
+  CameraView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +43,12 @@ class CameraView extends GetView<CameraController> {
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Center(
                   child: Container(
+                    child: Obx(() => controller.image.value != null
+                        ? Image.file(
+                            controller.image.value!,
+                            fit: BoxFit.cover,
+                          )
+                        : Container()),
                     width: double.infinity,
                     height: 300,
                     decoration: BoxDecoration(
@@ -54,6 +58,22 @@ class CameraView extends GetView<CameraController> {
                   ),
                 ),
               ),
+              verticalSpace(20),
+              ElevatedButton(
+                  onPressed: () {
+                    controller.getImage();
+                  },
+                  child: Text("Ambil Gambar")),
+                  
+                    ElevatedButton(
+                  onPressed: () {
+                  if(controller.image.value != null){
+                    Get.toNamed("/confirm-report");
+                  }else{
+                    Get.snackbar("Gagal", "Ambil gambar terlebih dahulu");
+                  }
+                  },
+                  child: Text("Selanjutnya"))
             ],
           ),
         ));

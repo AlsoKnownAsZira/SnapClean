@@ -26,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.EDIT_PROFILE;
+  static const INITIAL = Routes.CAMERA;
 
 
   static final routes = [
@@ -47,7 +47,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CAMERA,
-      page: () => const CameraView(),
+      page: () =>  CameraView(),
       binding: CameraBinding(),
     ),
     GetPage(
