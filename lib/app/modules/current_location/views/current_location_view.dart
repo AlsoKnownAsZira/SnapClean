@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:snapclean/app/widgets/gradient_appbar.dart';
 
 class CurrentLocationScreen extends StatefulWidget {
   const CurrentLocationScreen({Key? key}) : super(key: key);
@@ -20,10 +21,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("User Current Location"),
-        centerTitle: true,
-      ),
+      appBar: GradientAppBar(title: 'Posisi Terkini Pengguna'),
       body: GoogleMap(
         initialCameraPosition: initialCameraPosition,
         markers: markers,

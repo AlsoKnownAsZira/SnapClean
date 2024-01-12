@@ -29,7 +29,7 @@ class AppPages {
   AppPages._();
 
 
-  static const INITIAL = Routes.CAMERA;
+  static const INITIAL = Routes.LOGIN;
 
 
 

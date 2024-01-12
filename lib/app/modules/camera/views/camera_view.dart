@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
+import 'package:snapclean/app/widgets/gradient_appbar.dart';
 import '../controllers/camera_controller.dart';
 import '../../../widgets/sized_box.dart';
 
@@ -9,20 +11,8 @@ class CameraView extends GetView<CameraController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74)
-                ],
-              ),
-            ),
-          ),
-        ),
+        appBar: GradientAppBar(title: ''),
+        bottomNavigationBar: CustomNavbar(),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -68,7 +58,7 @@ class CameraView extends GetView<CameraController> {
                     ElevatedButton(
                   onPressed: () {
                   if(controller.image.value != null){
-                    Get.toNamed("/confirm-report");
+                    Get.toNamed("/confirm-report",arguments: controller.image.value!);
                   }else{
                     Get.snackbar("Gagal", "Ambil gambar terlebih dahulu");
                   }

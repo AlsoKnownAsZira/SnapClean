@@ -1,29 +1,19 @@
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:snapclean/app/widgets/custom_navbar.dart';
+import 'dart:io';
 import '../../../widgets/sized_box.dart';
 import '../controllers/confirm_report_controller.dart';
-
+import '../../../widgets/gradient_appbar.dart';
 class ConfirmReportView extends GetView<ConfirmReportController> {
   const ConfirmReportView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    File? image = Get.arguments;
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74)
-                ],
-              ),
-            ),
-          ),
-        ),
+      bottomNavigationBar: CustomNavbar(),
+        appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -48,6 +38,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey,
+                      image: image != null ? DecorationImage(image: FileImage(image), fit: BoxFit.cover) : null,
                     ),
                   ),
                 ),
