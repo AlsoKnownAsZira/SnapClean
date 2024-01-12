@@ -28,18 +28,25 @@ Tidak hanya menciptakan lingkungan yang lebih bersih, tetapi juga memberdayakan 
 - Pengguna bisa membersihkan sendiri atau melaporkan kepada petugas kebersihan
 
 ## Screenshots
+
+
 Tampilan Masuk
+
+
 ![App Screenshot](https://i.ibb.co/kGhnLsm/Screenshot-2024-01-12-232757.png)  
 
 
 Tampilan Daftar
+
 ![App Screenshot](https://i.ibb.co/Kj4SZwm/Screenshot-2024-01-12-233155.png) 
 
 
 Halaman Htama
+
 ![App Screenshot](https://i.ibb.co/Tw72Cd6/Screenshot-2024-01-12-233356.png) 
 
 Laporan Diproses,Diterima dan Selesai
+
 ![App Screenshot](https://i.ibb.co/8zxLFz9/Screenshot-2024-01-12-233502.png) 
 
 ![App Screenshot](https://i.ibb.co/sjTv2kX/Screenshot-2024-01-12-233809.png) 
@@ -47,21 +54,27 @@ Laporan Diproses,Diterima dan Selesai
 ![App Screenshot](https://i.ibb.co/56HK8d2/Screenshot-2024-01-12-233942.png) 
 
 Tampilan Sebelum Mengambil Foto
+
 ![App Screenshot](https://i.ibb.co/xFPJ8KN/Screenshot-2024-01-12-234054.png) 
 
 Membuka Kamera
+
 ![App Screenshot](https://i.ibb.co/TB8ggsD/Screenshot-2024-01-12-234211.png) 
 
 Setelah Mengambil Foto
+
 ![App Screenshot](https://i.ibb.co/RpxMcQr/Screenshot-2024-01-12-234311.png) 
 
 Konfirmasi Pelaporan
+
 ![App Screenshot](https://i.ibb.co/TB42x2F/Screenshot-2024-01-12-234716.png) 
 
 Memiliih Lokasi Pada Peta
+
 ![App Screenshot](https://i.ibb.co/BwNMPG9/Screenshot-2024-01-12-234949.png) 
 
 Menu Reward, pemasukan dan pengeluaran poin
+
 ![App Screenshot](https://i.ibb.co/J2FZ1qF/Screenshot-2024-01-12-235105.png) 
 
 ![App Screenshot](https://i.ibb.co/9vXZBVh/Screenshot-2024-01-12-235215.png) 
