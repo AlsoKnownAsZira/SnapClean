@@ -16,6 +16,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const CURRENT_LOCATION = _Paths.CURRENT_LOCATION;
+  static const CHANGE_POINT = _Paths.CHANGE_POINT;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const EDIT_PROFILE = '/edit-profile';
   static const CURRENT_LOCATION = '/current-location';
+  static const CHANGE_POINT = '/change-point';
 }
