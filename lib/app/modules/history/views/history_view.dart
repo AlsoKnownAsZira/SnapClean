@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:snapclean/app/modules/history/views/done_history.dart';
 import 'package:snapclean/app/modules/history/views/pending_history.dart';
 import 'package:snapclean/app/modules/history/views/sent_history.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
 
 import '../controllers/history_controller.dart';
 
@@ -14,6 +15,7 @@ class HistoryView extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavbar(),
         body: DefaultTabController(
       length: _tabs.length,
       initialIndex: initialTabIndex,

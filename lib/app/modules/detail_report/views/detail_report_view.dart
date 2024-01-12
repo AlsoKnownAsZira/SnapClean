@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'package:snapclean/app/widgets/show_snack_bar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
@@ -10,6 +11,7 @@ class DetailReportView extends GetView<DetailReportController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavbar(),
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: const BoxDecoration(
