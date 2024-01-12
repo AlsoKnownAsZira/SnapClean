@@ -81,7 +81,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-
   cross_file:
     dependency: transitive
     description:
@@ -90,7 +89,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3+8"
-
   crypto:
     dependency: transitive
     description:
@@ -107,7 +105,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -323,6 +320,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
+  getwidget:
+    dependency: "direct main"
+    description:
+      name: getwidget
+      sha256: "91df14a8d80e21f3ec02759295b90cc8badb8a872b90d34ad4aeb4085d833b5c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   google_maps:
     dependency: transitive
     description:
