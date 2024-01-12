@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
+import 'package:snapclean/app/widgets/gradient_appbar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 import 'package:snapclean/app/widgets/spline_chart.dart';
 
@@ -11,20 +13,9 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74)
-                ],
-              ),
-            ),
-          ),
-        ),
+      
+        appBar:GradientAppBar(title: ''),
+        bottomNavigationBar: CustomNavbar(),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),

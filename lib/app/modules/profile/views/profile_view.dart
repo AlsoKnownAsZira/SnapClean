@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/modules/profile/methods/profile_item.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
+import 'package:snapclean/app/widgets/gradient_appbar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
 import '../controllers/profile_controller.dart';
@@ -10,20 +12,8 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74)
-                ],
-              ),
-            ),
-          ),
-        ),
+      bottomNavigationBar: CustomNavbar(),
+        appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -56,7 +46,7 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         horizontalSpace(20),
                         SizedBox(
-                          width: 230,
+                          width: 220,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

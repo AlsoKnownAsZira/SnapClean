@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
+import 'package:snapclean/app/widgets/custom_navbar.dart';
 import '../controllers/reward_controller.dart';
 import '../../../widgets/sized_box.dart';
+import '../../../widgets/gradient_appbar.dart';
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 
 class RewardView extends GetView<RewardController> {
   const RewardView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+      bottomNavigationBar: CustomNavbar(),
+        appBar: GradientAppBar(title: ""),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,8 +80,8 @@ class RewardView extends GetView<RewardController> {
                     ],
                   ),
                   width: double.infinity,
-                  child:  Padding(
-                      padding:const  EdgeInsets.symmetric(
+                  child: Padding(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,11 +91,68 @@ class RewardView extends GetView<RewardController> {
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.bold),
                           ),
-                          IconButton(onPressed: (){}, icon: const Icon(Icons.arrow_forward_ios))
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.arrow_forward_ios))
                         ],
                       )),
                 ),
               ),
+              verticalSpace(40),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: CustomRadioButton(
+                    elevation: 0,
+                    selectedBorderColor: Colors.transparent,
+                    unSelectedBorderColor: Colors.transparent,
+                    absoluteZeroSpacing: true,
+                    buttonLables: const ['Keluar', 'Masuk'],
+                    buttonValues: const ['keluar', 'masuk'],
+                    radioButtonValue: (value) {
+                      controller.setSelectedValue(value);
+                    },
+                    unSelectedColor: Colors.grey,
+                    selectedColor: Colors.green,
+                    defaultSelected: 'keluar',
+                  )),
+              verticalSpace(20),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black, width: 1)),
+                  child: ListView(
+                    children: [
+                      Obx(() {
+                        return ListTile(
+                          title: Text(controller.selectedValue.value == 'keluar'
+                              ? "Pulsa Telkomsel Rp50.000,00"
+                              : "Pemasukan Pelaporan"),
+                          subtitle: Text(
+                              DateFormat('dd-MM-yyyy').format(DateTime.now())),
+                          trailing: Text(controller.selectedValue.value ==
+                                  'keluar'
+                              ? "- 50"
+                              : "+ 50",
+                            
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              color: controller.selectedValue.value == 'keluar'
+                                  ? Colors.red
+                                  : Colors.green,
+                            ),
+                          ),
+                        );
+                      }),
+                      // ...
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ));

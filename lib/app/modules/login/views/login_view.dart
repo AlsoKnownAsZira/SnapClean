@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:snapclean/app/modules/home/views/home_view.dart';
 
 import '../controllers/login_controller.dart';
 import '../../../widgets/text_field.dart';
@@ -51,7 +52,7 @@ class LoginView extends GetView<LoginController> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 145, 231, 131)),
                 onPressed: () {
-                  Get.offNamed('/home');
+                  Get.off(HomeView());
                   // ref.read(userDataProvider.notifier).login(
                   //     email: emailController.text,
                   //     password: passwordController.text);
