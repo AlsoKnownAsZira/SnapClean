@@ -1,6 +1,6 @@
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:snapclean/app/modules/camera/bindings/camera_binding.dart';
 import 'package:snapclean/app/modules/camera/views/camera_view.dart';
 import 'package:snapclean/app/modules/history/bindings/history_binding.dart';
@@ -19,12 +19,9 @@ class NavController extends GetxController {
     currentIndex.value = index;
     switch (index) {
       case 0:
-     
         Get.off(HomeView(), binding: HomeBinding());
         break;
       case 1:
-             
-
         Get.off(
             HistoryView(
               initialTabIndex: 0,
@@ -32,18 +29,13 @@ class NavController extends GetxController {
             binding: HistoryBinding());
         break;
       case 2:
-             
         Get.off(CameraView(), binding: CameraBinding());
         break;
       case 3:
-           
-
-        Get.off(RewardView(), binding: RewardBinding());
+        Get.off(const RewardView(), binding: RewardBinding());
         break;
       case 4:
-       
-
-        Get.off(ProfileView(), binding: ProfileBinding());
+        Get.off(const ProfileView(), binding: ProfileBinding());
     }
   }
 }
@@ -58,11 +50,31 @@ class CustomNavbar extends StatelessWidget {
     return Obx(() {
       return ConvexAppBar(
         items: [
-          TabItem(icon: Icon(Icons.home_outlined, color: navController.currentIndex.value == 0 ? Colors.green : Colors.white)),
-          TabItem(icon: Icon(Icons.history_outlined, color: navController.currentIndex.value == 1 ? Colors.green : Colors.white)),
-          TabItem(icon: Icon(Icons.camera_alt_outlined, color: navController.currentIndex.value == 2 ? Colors.green : Colors.white)),
-          TabItem(icon: Icon(Icons.card_giftcard_outlined, color: navController.currentIndex.value == 3 ? Colors.green : Colors.white)),
-          TabItem(icon: Icon(Icons.person_outlined, color: navController.currentIndex.value == 4 ? Colors.green : Colors.white)),
+          TabItem(
+              icon: Icon(Icons.home_outlined,
+                  color: navController.currentIndex.value == 0
+                      ? Colors.green
+                      : Colors.white)),
+          TabItem(
+              icon: Icon(Icons.history_outlined,
+                  color: navController.currentIndex.value == 1
+                      ? Colors.green
+                      : Colors.white)),
+          TabItem(
+              icon: Icon(Icons.camera_alt_outlined,
+                  color: navController.currentIndex.value == 2
+                      ? Colors.green
+                      : Colors.white)),
+          TabItem(
+              icon: Icon(Icons.card_giftcard_outlined,
+                  color: navController.currentIndex.value == 3
+                      ? Colors.green
+                      : Colors.white)),
+          TabItem(
+              icon: Icon(Icons.person_outlined,
+                  color: navController.currentIndex.value == 4
+                      ? Colors.green
+                      : Colors.white)),
         ],
         style: TabStyle.fixedCircle,
         initialActiveIndex: navController.currentIndex.value,
