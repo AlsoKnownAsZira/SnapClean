@@ -1,12 +1,15 @@
-import 'package:get/get.dart';
-
-import '../controllers/register_controller.dart';
-import '../../../widgets/text_field.dart';
-import '../../../widgets/sized_box.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:snapclean/app/widgets/show_snack_bar.dart';
+
+import '../../../widgets/sized_box.dart';
+import '../../../widgets/text_field.dart';
+import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
-  const RegisterView({Key? key}) : super(key: key);
+  RegisterView({Key? key}) : super(key: key);
+  final RegisterController _controller = Get.put(RegisterController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +58,12 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   verticalSpace(24),
                   SnapTextField(
+                    labelText: 'Alamat',
+                    controller: controller.addressController,
+                    hintText: 'Masukkan Alamat Anda',
+                  ),
+                  verticalSpace(24),
+                  SnapTextField(
                       labelText: 'Password',
                       controller: controller.passwordController,
                       obscureText: true,
@@ -73,53 +82,31 @@ class RegisterView extends GetView<RegisterController> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
                               const Color.fromARGB(255, 145, 231, 131)),
-                      onPressed: () {
+                      onPressed: () async {
                         if (controller.passwordController.text ==
                             controller.reTypePasswordController.text) {
-                          Get.offNamed('/login');
+                          _controller.registerUser(
+                              controller.emailController.text,
+                              controller.passwordController.text,
+                              controller.nameController.text,
+                              controller.addressController.text);
                         } else {
-                          // context.showSnackBar(
-                          //     'Your confirmation password is not the same');
+                          context.showSnackBar(
+                              'Your confirmation password is not the same');
                         }
                       },
-                      child: const Text(
-                        "Daftar",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                      child: Obx(
+                        () => _controller.isLoading.value
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                                "Daftar",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                       ),
                     ),
                   ),
-                  // switch (ref.watch(userDataProvider)) {
-                  //   AsyncData(:final value) => value == null
-                  //       ? SizedBox(
-                  //           width: double.infinity,
-                  //           child: ElevatedButton(
-                  //             style: ElevatedButton.styleFrom(
-                  //                 backgroundColor: Colors.green),
-                  //             onPressed: () {
-                  //               if (controller.passwordController.text ==
-                  //                   controller.reTypePasswordController
-                  //                       .text) {
-                  //               } else {
-                  //                 // context.showSnackBar(
-                  //                 //     'Your confirmation password is not the same');
-                  //               }
-                  //             },
-                  //             child: const Text(
-                  //               "Register",
-                  //               style: TextStyle(
-                  //                   fontWeight: FontWeight.bold,
-                  //                   color: Colors.white),
-                  //             ),
-                  //           ),
-                  //         )
-                  //       : const Center(
-                  //           child: CircularProgressIndicator(),
-                  //         ),
-                  //   _ => const Center(
-                  //       child: CircularProgressIndicator(),
-                  //     )
-                  // },
                   verticalSpace(24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -140,6 +127,7 @@ class RegisterView extends GetView<RegisterController> {
                 ],
               ),
             ),
+            verticalSpace(24)
           ],
         )
       ],

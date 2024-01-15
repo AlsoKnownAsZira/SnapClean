@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/camera/bindings/camera_binding.dart';
 import '../modules/camera/views/camera_view.dart';
+import '../modules/change_point/bindings/change_point_binding.dart';
+import '../modules/change_point/views/change_point_view.dart';
 import '../modules/confirm_report/bindings/confirm_report_binding.dart';
 import '../modules/confirm_report/views/confirm_report_view.dart';
 import '../modules/current_location/bindings/current_location_binding.dart';
@@ -28,10 +30,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-
   static const INITIAL = Routes.LOGIN;
-
-
 
   static final routes = [
     GetPage(
@@ -41,17 +40,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => const LoginView(),
+      page: () => LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
       name: _Paths.REGISTER,
-      page: () => const RegisterView(),
+      page: () => RegisterView(),
       binding: RegisterBinding(),
     ),
     GetPage(
       name: _Paths.CAMERA,
-      page: () =>  CameraView(),
+      page: () => CameraView(),
       binding: CameraBinding(),
     ),
     GetPage(
@@ -75,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () => ProfileView(),
       binding: ProfileBinding(),
     ),
     GetPage(
@@ -87,6 +86,11 @@ class AppPages {
       name: _Paths.CURRENT_LOCATION,
       page: () => const CurrentLocationScreen(),
       binding: CurrentLocationBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_POINT,
+      page: () => const ChangePointView(),
+      binding: ChangePointBinding(),
     ),
   ];
 }
