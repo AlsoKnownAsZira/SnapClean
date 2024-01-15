@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:snapclean/app/modules/home/views/home_view.dart';
 
-import '../controllers/login_controller.dart';
-import '../../../widgets/text_field.dart';
 import '../../../widgets/sized_box.dart';
+import '../../../widgets/text_field.dart';
+import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  LoginView({Key? key}) : super(key: key);
+  final LoginController _controller = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,44 +52,22 @@ class LoginView extends GetView<LoginController> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 145, 231, 131)),
                 onPressed: () {
-                  Get.off(HomeView());
-                  // ref.read(userDataProvider.notifier).login(
-                  //     email: emailController.text,
-                  //     password: passwordController.text);
+                  _controller.loginUser(
+                    controller.emailController.text,
+                    controller.passwordController.text,
+                  );
                 },
-                child: const Text(
-                  "Masuk",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
+                child: Obx(
+                  () => _controller.isLoading.value
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          "Masuk",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
                 ),
               ),
             ),
-            // switch (ref.watch(userDataProvider)) {
-            //   AsyncData(:final value) => value == null
-            //       ? SizedBox(
-            //           width: double.infinity,
-            //           child: ElevatedButton(
-            //             style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-            //             onPressed: () {
-            //               // ref.read(userDataProvider.notifier).login(
-            //               //     email: emailController.text,
-            //               //     password: passwordController.text);
-            //             },
-            //             child: const Text(
-            //               "Login",
-            //               style: TextStyle(
-            //                   fontWeight: FontWeight.bold,
-            //                   color: Colors.white),
-            //             ),
-            //           ),
-            //         )
-            //       : const Center(
-            //           child: CircularProgressIndicator(),
-            //         ),
-            //   _ => const Center(
-            //       child: CircularProgressIndicator(),
-            //     )
-            // },
             verticalSpace(24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +75,7 @@ class LoginView extends GetView<LoginController> {
                 const Text("Belum punya akun?"),
                 TextButton(
                     onPressed: () {
-                        Get.offNamed('/register');
+                      Get.offNamed('/register');
                     },
                     child: const Text(
                       'Daftar',

@@ -35,7 +35,7 @@ class NavController extends GetxController {
         Get.off(const RewardView(), binding: RewardBinding());
         break;
       case 4:
-        Get.off(const ProfileView(), binding: ProfileBinding());
+        Get.off(ProfileView(), binding: ProfileBinding());
     }
   }
 }

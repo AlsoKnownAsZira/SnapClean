@@ -11,6 +11,7 @@ class User with _$User {
     required String name,
     String? photoUrl,
     String? address,
+    @Default(0) int point,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
