@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
+import 'package:snapclean/app/widgets/gradient_appbar.dart';
 import 'package:snapclean/app/widgets/show_snack_bar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
@@ -12,28 +13,7 @@ class DetailReportView extends GetView<DetailReportController> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomNavbar(),
-        appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74)
-                ],
-              ),
-            ),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.black, // Icon "back"
-            onPressed: () {
-              // Fungsi yang dipanggil saat tombol "back" ditekan
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
+        appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Column(
             children: [

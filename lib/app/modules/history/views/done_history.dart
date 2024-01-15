@@ -49,7 +49,7 @@ class _DoneHistoryState extends State<DoneHistory> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Jln. Lurah Surodarmo 2',
+                                'Jln. Bunga Andong no 3F',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
