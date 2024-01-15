@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/modules/edit_profile/views/edit_profile_view.dart';
 import 'package:snapclean/app/modules/profile/methods/profile_item.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'package:snapclean/app/widgets/gradient_appbar.dart';
@@ -126,7 +127,7 @@ class ProfileView extends GetView<ProfileController> {
                 verticalSpace(20),
                 const Divider(),
                 verticalSpace(20),
-                profileItem('Edit Profil'),
+                profileItem('Edit Profil', onTap: () => Get.to(EditProfileView())),
                 verticalSpace(20),
                 profileItem('Pointku'),
                 verticalSpace(20),

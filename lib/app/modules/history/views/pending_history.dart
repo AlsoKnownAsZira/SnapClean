@@ -49,7 +49,7 @@ class _PendingHistoryState extends State<PendingHistory> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Jln. Lurah Surodarmo 2',
+                                'Jln. Bromo no 9C Timur',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),

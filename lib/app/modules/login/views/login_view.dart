@@ -8,6 +8,7 @@ import '../../../widgets/text_field.dart';
 import '../../../widgets/sized_box.dart';
 
 class LoginView extends GetView<LoginController> {
+  
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LoginView extends GetView<LoginController> {
       verticalSpace(100),
       Center(
         child: Image.network(
-          'https://w7.pngwing.com/pngs/469/94/png-transparent-camera-logo-graphy-camera-text-camera-lens-rectangle-thumbnail.png',
+          'https://i.ibb.co/R0YfD6L/Snap-Clean.jpg',
           width: 150,
         ),
       ),

@@ -71,7 +71,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                               border: Border.all(color: Colors.grey, width: 2)),
                           height: 45,
                           child: TextField(
-                              minLines: 5,
+                              
                               maxLines: null,
                               controller: controller.locationController),
                         ),
@@ -140,6 +140,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                               fontSize: 20),
                         ))),
               ),
+              verticalSpace(50),
             ],
           ),
         ));
