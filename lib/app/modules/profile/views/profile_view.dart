@@ -8,11 +8,13 @@ import 'package:snapclean/app/widgets/sized_box.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+  ProfileView({Key? key}) : super(key: key);
+  final ProfileController _controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
+        bottomNavigationBar: const CustomNavbar(),
         appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Padding(
@@ -20,109 +22,125 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               children: [
                 verticalSpace(20),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.circular(10), // Ubah sesuai kebutuhan
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(
-                              0, 3), // Ubah offset sesuai kebutuhan
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 30.0,
-                          backgroundImage: NetworkImage(
-                              "https://3.bp.blogspot.com/-jFke770FuUA/VnGN0MqDgzI/AAAAAAAAArI/x8NhcVlH9Ok/s1600/Foto%2BPria%2BGanteng%2BIndonesia%2B%252821%2529.jpg"),
-                        ),
-                        horizontalSpace(20),
-                        SizedBox(
-                          width: 220,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Rusdi Komaladi",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 15),
-                              ),
-                              verticalSpace(1),
-                              const Text(
-                                "Jln. Bojongsoang Blok D3",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              verticalSpace(5),
-                              Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.circle,
-                                        size: 10,
-                                        color: Colors.red,
-                                      ),
-                                      horizontalSpace(2),
-                                      const Text('1')
-                                    ],
-                                  ),
-                                  horizontalSpace(30),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.circle,
-                                        size: 10,
-                                        color: Colors.yellow,
-                                      ),
-                                      horizontalSpace(2),
-                                      const Text('3')
-                                    ],
-                                  ),
-                                  horizontalSpace(30),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.circle,
-                                        size: 10,
-                                        color: Colors.green,
-                                      ),
-                                      horizontalSpace(2),
-                                      const Text('1')
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+                Obx(() {
+                  // Check if user data is available
+                  if (controller.userData.value != null) {
+                    var user = controller.userData.value!;
+                    return Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
                           ),
-                        ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Container(
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 30.0,
+                            // Use the user's photo URL
+                            backgroundImage: (user.photoUrl != null)
+                                ? NetworkImage(user.photoUrl.toString())
+                                : const NetworkImage(
+                                    "https://locker.com.au/wp-content/uploads/2017/01/user-icon-png-person-user-profile-icon-20.png"),
+                          ),
+                          horizontalSpace(20),
+                          SizedBox(
+                            width: 210,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Point:',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
                                 Text(
-                                  '427',
-                                  style: TextStyle(
-                                      color: Colors.green[900], fontSize: 20),
-                                )
+                                  user.name,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                verticalSpace(1),
+                                Text(
+                                  user.address ?? "-",
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                                verticalSpace(5),
+                                Row(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 10,
+                                          color: Colors.red,
+                                        ),
+                                        horizontalSpace(2),
+                                        const Text('1'),
+                                      ],
+                                    ),
+                                    horizontalSpace(30),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 10,
+                                          color: Colors.yellow,
+                                        ),
+                                        horizontalSpace(2),
+                                        const Text('3')
+                                      ],
+                                    ),
+                                    horizontalSpace(30),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.circle,
+                                          size: 10,
+                                          color: Colors.green,
+                                        ),
+                                        horizontalSpace(2),
+                                        const Text('1')
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ],
                             ),
                           ),
-                        )
-                      ],
-                    )),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    'Point:',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    user.point.toString(),
+                                    style: TextStyle(
+                                      color: Colors.green[900],
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    // If user data is not available, display a loading indicator or placeholder
+                    return const CircularProgressIndicator();
+                  }
+                }),
                 verticalSpace(20),
                 const Divider(),
                 verticalSpace(20),
@@ -163,7 +181,7 @@ class ProfileView extends GetView<ProfileController> {
                                 horizontalSpace(5),
                                 IconButton(
                                     onPressed: () {
-                                      Get.offNamed('/login');
+                                      _controller.logoutUser();
                                     },
                                     icon: const Icon(
                                       Icons.done,
