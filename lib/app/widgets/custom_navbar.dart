@@ -1,86 +1,50 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:snapclean/app/modules/camera/bindings/camera_binding.dart';
-import 'package:snapclean/app/modules/camera/views/camera_view.dart';
-import 'package:snapclean/app/modules/history/bindings/history_binding.dart';
-import 'package:snapclean/app/modules/history/views/history_view.dart';
-import 'package:snapclean/app/modules/home/bindings/home_binding.dart';
-import 'package:snapclean/app/modules/home/views/home_view.dart';
-import 'package:snapclean/app/modules/profile/bindings/profile_binding.dart';
-import 'package:snapclean/app/modules/profile/views/profile_view.dart';
-import 'package:snapclean/app/modules/reward/bindings/reward_binding.dart';
-import 'package:snapclean/app/modules/reward/views/reward_view.dart';
-
-class NavController extends GetxController {
-  RxInt currentIndex = 0.obs;
-
-  void changePage(int index) {
-    currentIndex.value = index;
-    switch (index) {
-      case 0:
-        Get.off(HomeView(), binding: HomeBinding());
-        break;
-      case 1:
-        Get.off(
-            HistoryView(
-              initialTabIndex: 0,
-            ),
-            binding: HistoryBinding());
-        break;
-      case 2:
-        Get.off(CameraView(), binding: CameraBinding());
-        break;
-      case 3:
-        Get.off(const RewardView(), binding: RewardBinding());
-        break;
-      case 4:
-        Get.off(ProfileView(), binding: ProfileBinding());
-    }
-  }
-}
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import '../routes/app_pages.dart';
 
 class CustomNavbar extends StatelessWidget {
-  const CustomNavbar({Key? key}) : super(key: key);
+  final int initialActiveIndex;
+
+  CustomNavbar({this.initialActiveIndex = 0});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => NavController());
-    final NavController navController = Get.find<NavController>();
-    return Obx(() {
-      return ConvexAppBar(
-        items: [
-          TabItem(
-              icon: Icon(Icons.home_outlined,
-                  color: navController.currentIndex.value == 0
-                      ? Colors.green
-                      : Colors.white)),
-          TabItem(
-              icon: Icon(Icons.history_outlined,
-                  color: navController.currentIndex.value == 1
-                      ? Colors.green
-                      : Colors.white)),
-          TabItem(
-              icon: Icon(Icons.camera_alt_outlined,
-                  color: navController.currentIndex.value == 2
-                      ? Colors.green
-                      : Colors.white)),
-          TabItem(
-              icon: Icon(Icons.card_giftcard_outlined,
-                  color: navController.currentIndex.value == 3
-                      ? Colors.green
-                      : Colors.white)),
-          TabItem(
-              icon: Icon(Icons.person_outlined,
-                  color: navController.currentIndex.value == 4
-                      ? Colors.green
-                      : Colors.white)),
-        ],
-        style: TabStyle.fixedCircle,
-        initialActiveIndex: navController.currentIndex.value,
-        onTap: navController.changePage,
-        backgroundColor: Colors.grey,
-      );
-    });
+    return ConvexAppBar(
+      style: TabStyle.fixedCircle,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      
+      items: const [
+        TabItem(icon: Icons.home),
+        TabItem(icon: Icons.history),
+        TabItem(icon: Icons.camera_alt_outlined, ),
+        TabItem(icon: Icons.card_giftcard_outlined, ),
+        TabItem(icon: Icons.person_2_outlined, ),
+
+      ],
+      activeColor: Colors.green,
+      color: Colors.grey,
+    
+      initialActiveIndex: initialActiveIndex,
+      onTap: (index) {
+        switch (index){
+          case 0:
+            Get.offAllNamed(Routes.HOME);
+            break;
+          case 1:
+            Get.offAllNamed(Routes.HISTORY);
+            break;
+          case 2:
+            Get.offAllNamed(Routes.CAMERA);
+            break;
+          case 3:
+            Get.offAllNamed(Routes.REWARD);
+            break;
+          case 4:
+            Get.offAllNamed(Routes.PROFILE);
+            break;
+        }
+      },
+    );
   }
 }

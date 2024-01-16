@@ -8,7 +8,9 @@ import 'package:snapclean/app/widgets/text_field.dart';
 import '../controllers/edit_profile_controller.dart';
 
 class EditProfileView extends GetView<EditProfileController> {
+
   const EditProfileView({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

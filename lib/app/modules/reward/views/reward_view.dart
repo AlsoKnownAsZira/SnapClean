@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:snapclean/app/modules/change_point/views/change_point_view.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 import '../controllers/reward_controller.dart';
 import '../../../widgets/sized_box.dart';
@@ -13,7 +14,9 @@ class RewardView extends GetView<RewardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
+        bottomNavigationBar: CustomNavbar(
+          initialActiveIndex: 3,
+        ),
         appBar: GradientAppBar(title: ""),
         body: SingleChildScrollView(
           child: Column(
@@ -66,21 +69,23 @@ class RewardView extends GetView<RewardController> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  child: Padding(
+                child: GestureDetector(
+                  onTap: () => Get.to(ChangePointView()),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    width: double.infinity,
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 5),
                       child: Row(
@@ -95,9 +100,12 @@ class RewardView extends GetView<RewardController> {
                               onPressed: () {},
                               icon: const Icon(Icons.arrow_forward_ios))
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ),
+              // ),
               verticalSpace(40),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -133,11 +141,10 @@ class RewardView extends GetView<RewardController> {
                               : "Pemasukan Pelaporan"),
                           subtitle: Text(
                               DateFormat('dd-MM-yyyy').format(DateTime.now())),
-                          trailing: Text(controller.selectedValue.value ==
-                                  'keluar'
-                              ? "- 50"
-                              : "+ 50",
-                            
+                          trailing: Text(
+                            controller.selectedValue.value == 'keluar'
+                                ? "- 50"
+                                : "+ 50",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,

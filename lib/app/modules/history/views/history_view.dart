@@ -15,12 +15,13 @@ class HistoryView extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
+      bottomNavigationBar: CustomNavbar(initialActiveIndex: 1,),
         body: DefaultTabController(
       length: _tabs.length,
       initialIndex: initialTabIndex,
       child: Scaffold(
         appBar: AppBar(
+          leading: SizedBox(),
           backgroundColor: Colors.white,
           flexibleSpace: Container(
             decoration: const BoxDecoration(

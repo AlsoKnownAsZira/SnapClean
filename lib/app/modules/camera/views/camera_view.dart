@@ -12,7 +12,7 @@ class CameraView extends GetView<CameraController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: GradientAppBar(title: ''),
-        bottomNavigationBar: CustomNavbar(),
+        bottomNavigationBar: CustomNavbar(initialActiveIndex: 2,),
         body: SingleChildScrollView(
           child: Column(
             children: [
