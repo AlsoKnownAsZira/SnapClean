@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(title: ''),
-      bottomNavigationBar: const CustomNavbar(),
+      bottomNavigationBar:  CustomNavbar( initialActiveIndex: 0,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),

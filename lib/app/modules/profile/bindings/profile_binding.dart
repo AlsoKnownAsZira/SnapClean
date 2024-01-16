@@ -10,6 +10,7 @@ class ProfileBinding extends Bindings {
     );
        Get.lazyPut<EditProfileController>(
       () => EditProfileController(),
+      fenix: true
     );
   }
 }

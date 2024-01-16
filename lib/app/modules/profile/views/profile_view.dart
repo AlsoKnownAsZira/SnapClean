@@ -10,12 +10,12 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({Key? key}) : super(key: key);
-  final ProfileController _controller = Get.put(ProfileController());
+  final ProfileController _controller = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: const CustomNavbar(),
+        bottomNavigationBar:  CustomNavbar(initialActiveIndex: 4,),
         appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Padding(
