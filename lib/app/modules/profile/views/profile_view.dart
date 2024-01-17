@@ -162,11 +162,11 @@ class ProfileView extends GetView<ProfileController> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: const Text(
-                                "Logout",
+                                "Keluar",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               content: const Text(
-                                "Apa anda yakin ingin logout akun?",
+                                "Apa anda yakin ingin Keluar akun?",
                                 style: TextStyle(fontSize: 15),
                               ),
                               actions: [
@@ -194,7 +194,7 @@ class ProfileView extends GetView<ProfileController> {
                           });
                     },
                     child: const Text(
-                      "LOGOUT",
+                      "Keluar",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),

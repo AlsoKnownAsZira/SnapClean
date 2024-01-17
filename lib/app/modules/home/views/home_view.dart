@@ -118,7 +118,7 @@ class HomeView extends GetView<HomeController> {
                             child: Column(
                               children: [
                                 const Text(
-                                  'Point:',
+                                  'Poin:',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Text(

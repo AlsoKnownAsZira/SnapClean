@@ -38,7 +38,7 @@ class _DoneHistoryState extends State<DoneHistory> {
                       child: Row(
                         children: [
                           Image.network(
-                            'https://tse4.mm.bing.net/th?id=OIP.dcO6APRL4BTHohClTGOa8wAAAA&pid=Api&P=0&h=180',
+                            'https://www.zocalopublicsquare.org/wp-content/uploads/2016/01/Krasny-ART-LEAD-1000.jpg',
                             width: 100,
                             height: double.infinity,
                             fit: BoxFit.cover,
