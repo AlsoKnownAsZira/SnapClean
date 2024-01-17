@@ -15,63 +15,63 @@ class HistoryView extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
+        bottomNavigationBar: const CustomNavbar(),
         body: DefaultTabController(
-      length: _tabs.length,
-      initialIndex: initialTabIndex,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.3, 0.6, 0.6],
-                colors: [
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74),
-                  Colors.white,
+          length: _tabs.length,
+          initialIndex: initialTabIndex,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.3, 0.6, 0.6],
+                    colors: [
+                      Color.fromRGBO(34, 193, 195, 1),
+                      Color.fromRGBO(95, 253, 45, 0.74),
+                      Colors.white,
+                    ],
+                  ),
+                ),
+              ),
+              bottom: const TabBar(
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Colors.green,
+                tabs: [
+                  Tab(
+                    child: Column(
+                      children: [Icon(Icons.send), Text('Terkirim')],
+                    ),
+                  ),
+                  Tab(
+                    child: Column(
+                      children: [Icon(Icons.av_timer), Text('Proses')],
+                    ),
+                  ),
+                  Tab(
+                    child: Column(
+                      children: [
+                        Icon(Icons.download_done_outlined),
+                        Text('Selesai')
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
+            body: TabBarView(
+              children: _tabs,
+            ),
           ),
-          bottom: const TabBar(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.green,
-            tabs: [
-              Tab(
-                child: Column(
-                  children: [Icon(Icons.send), Text('Terkirim')],
-                ),
-              ),
-              Tab(
-                child: Column(
-                  children: [Icon(Icons.av_timer), Text('Proses')],
-                ),
-              ),
-              Tab(
-                child: Column(
-                  children: [
-                    Icon(Icons.download_done_outlined),
-                    Text('Selesai')
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: _tabs,
-        ),
-      ),
-    ));
+        ));
   }
 
   final List<Widget> _tabs = [
-    const SentHistory(),
-    const PendingHistory(),
+    SentHistory(),
+    PendingHistory(),
     const DoneHistory()
   ];
 }

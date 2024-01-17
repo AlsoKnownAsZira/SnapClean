@@ -55,7 +55,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CONFIRM_REPORT,
-      page: () => const ConfirmReportView(),
+      page: () => ConfirmReportView(
+        currentLocation: '',
+      ),
       binding: ConfirmReportBinding(),
     ),
     GetPage(
@@ -69,7 +71,7 @@ class AppPages {
         binding: RewardBinding()),
     GetPage(
       name: _Paths.DETAIL_REPORT,
-      page: () => const DetailReportView(),
+      page: () => DetailReportView(),
       binding: DetailReportBinding(),
     ),
     GetPage(
@@ -84,7 +86,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CURRENT_LOCATION,
-      page: () => const CurrentLocationScreen(),
+      page: () => CurrentLocationScreen(
+        onLocationSelected: (LatLng) {},
+      ),
       binding: CurrentLocationBinding(),
     ),
     GetPage(
