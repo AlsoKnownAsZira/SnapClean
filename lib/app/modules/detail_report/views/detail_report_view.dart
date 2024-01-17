@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:snapclean/app/domain/entities/transaction.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
-import 'package:snapclean/app/widgets/show_snack_bar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
 import '../controllers/detail_report_controller.dart';
@@ -16,7 +15,9 @@ class DetailReportView extends GetView<DetailReportController> {
     // Transaction? report = controller.transaction.value;
     Transaction? report = Get.arguments as Transaction;
     return Scaffold(
-        bottomNavigationBar: const CustomNavbar(),
+        bottomNavigationBar: CustomNavbar(
+          initialActiveIndex: 1,
+        ),
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: const BoxDecoration(
@@ -29,14 +30,6 @@ class DetailReportView extends GetView<DetailReportController> {
                 ],
               ),
             ),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.black, // Icon "back"
-            onPressed: () {
-              // Fungsi yang dipanggil saat tombol "back" ditekan
-              Navigator.of(context).pop();
-            },
           ),
         ),
         body: SingleChildScrollView(
@@ -215,8 +208,12 @@ class DetailReportView extends GetView<DetailReportController> {
                                 IconButton(
                                     onPressed: () {
                                       Get.offNamed('/history');
-                                      context.showSnackBar(
-                                          'Laporan anda telah terhapus!');
+
+                                      Get.snackbar("Selesai!",
+                                          "Laporan anda berhasil dihapus",
+                                          backgroundColor: Colors.green,
+                                          colorText: Colors.white,
+                                          snackPosition: SnackPosition.BOTTOM);
                                     },
                                     icon: const Icon(
                                       Icons.done,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/modules/edit_profile/views/edit_profile_view.dart';
 import 'package:snapclean/app/modules/profile/methods/profile_item.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'package:snapclean/app/widgets/gradient_appbar.dart';
@@ -9,12 +10,12 @@ import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
   ProfileView({Key? key}) : super(key: key);
-  final ProfileController _controller = Get.put(ProfileController());
+  final ProfileController _controller = Get.find<ProfileController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: const CustomNavbar(),
+        bottomNavigationBar:  CustomNavbar(initialActiveIndex: 4,),
         appBar: GradientAppBar(title: ''),
         body: SingleChildScrollView(
           child: Padding(
@@ -144,7 +145,7 @@ class ProfileView extends GetView<ProfileController> {
                 verticalSpace(20),
                 const Divider(),
                 verticalSpace(20),
-                profileItem('Edit Profil'),
+                profileItem('Edit Profil', onTap: () => Get.to(EditProfileView())),
                 verticalSpace(20),
                 profileItem('Pointku'),
                 verticalSpace(20),

@@ -7,18 +7,18 @@ import 'package:snapclean/firebase_options.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   RegisterController registerController = Get.put(RegisterController());
-
   // Check if the user is already authenticated
   if (await registerController.isUserLoggedIn()) {
     // If the user is logged in, navigate to the home page
     runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: Routes.HOME,
       getPages: AppPages.routes,
@@ -26,6 +26,7 @@ void main() async {
   } else {
     // If the user is not logged in, show the login page
     runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

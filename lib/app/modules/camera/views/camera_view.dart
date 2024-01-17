@@ -12,7 +12,9 @@ class CameraView extends GetView<CameraController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: GradientAppBar(title: ''),
-        bottomNavigationBar: CustomNavbar(),
+        bottomNavigationBar: CustomNavbar(
+          initialActiveIndex: 2,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -30,40 +32,59 @@ class CameraView extends GetView<CameraController> {
                   ))),
               verticalSpace(20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Center(
                   child: Container(
-                    child: Obx(() => controller.image.value != null
-                        ? Image.file(
-                            controller.image.value!,
-                            fit: BoxFit.cover,
-                          )
-                        : Container()),
                     width: double.infinity,
                     height: 300,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey,
                     ),
+                    child: Obx(() => controller.image.value != null
+                        ? Image.file(
+                            controller.image.value!,
+                            fit: BoxFit.cover,
+                          )
+                        : Container()),
                   ),
                 ),
               ),
               verticalSpace(20),
-              ElevatedButton(
-                  onPressed: () {
-                    controller.getImage();
-                  },
-                  child: Text("Ambil Gambar")),
-                  
-                    ElevatedButton(
-                  onPressed: () {
-                  if(controller.image.value != null){
-                    Get.toNamed("/confirm-report",arguments: controller.image.value!);
-                  }else{
-                    Get.snackbar("Gagal", "Ambil gambar terlebih dahulu");
-                  }
-                  },
-                  child: Text("Selanjutnya"))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                      ),
+                      onPressed: () {
+                        controller.getImage();
+                      },
+                      child: const Text(
+                        "Ambil Gambar",
+                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                      )),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      onPressed: () {
+                        if (controller.image.value != null) {
+                          Get.toNamed("/confirm-report",
+                              arguments: controller.image.value!);
+                        } else {
+                          Get.snackbar("Gagal", "Ambil gambar terlebih dahulu",
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM);
+                        }
+                      },
+                      child:const   Text(
+                        "Selanjutnya",
+                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                      ))
+                ],
+              ),
             ],
           ),
         ));

@@ -29,8 +29,23 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
     final File? image = Get.arguments;
 
     return Scaffold(
-        bottomNavigationBar: const CustomNavbar(),
-        appBar: GradientAppBar(title: ''),
+      bottomNavigationBar: CustomNavbar(),
+        appBar:AppBar(
+      
+
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color.fromRGBO(34, 193, 195, 1),
+              Color.fromRGBO(95, 253, 45, 0.74)
+            ],
+          ),
+        ),
+      ),
+    ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -235,6 +250,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                             )),
                     )),
               ),
+              verticalSpace(50),
             ],
           ),
         ));

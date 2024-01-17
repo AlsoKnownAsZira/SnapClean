@@ -8,5 +8,6 @@ class ChangePointBinding extends Bindings {
     Get.lazyPut<ChangePointController>(
       () => ChangePointController(),
     );
+   
   }
 }

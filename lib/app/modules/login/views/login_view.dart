@@ -8,17 +8,14 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);
   final LoginController _controller = Get.put(LoginController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(children: [
       verticalSpace(100),
       Center(
-        child: Image.network(
-          'https://w7.pngwing.com/pngs/469/94/png-transparent-camera-logo-graphy-camera-text-camera-lens-rectangle-thumbnail.png',
-          width: 150,
-        ),
+        child: Image.asset('assets/images/logo_snapclean.png',
+            width: 200)
       ),
       verticalSpace(100),
       Padding(
