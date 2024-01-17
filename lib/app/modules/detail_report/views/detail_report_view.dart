@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:snapclean/app/domain/entities/transaction.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
 import '../controllers/detail_report_controller.dart';
 
 class DetailReportView extends GetView<DetailReportController> {
-  const DetailReportView({Key? key}) : super(key: key);
+  DetailReportView({Key? key}) : super(key: key);
+  final DetailReportController _controller = Get.put(DetailReportController());
   @override
   Widget build(BuildContext context) {
+    // Transaction? report = controller.transaction.value;
+    Transaction? report = Get.arguments as Transaction;
     return Scaffold(
         bottomNavigationBar: CustomNavbar(
           initialActiveIndex: 1,
@@ -82,11 +87,11 @@ class DetailReportView extends GetView<DetailReportController> {
                           width: 2, // Sesuaikan lebar border
                         ),
                       ),
-                      child: const Align(
+                      child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Jln. Lurah Surodarmo 2',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            report.address,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           )),
                     ),
                   ],
@@ -115,11 +120,13 @@ class DetailReportView extends GetView<DetailReportController> {
                           width: 2, // Sesuaikan lebar border
                         ),
                       ),
-                      child: const Align(
+                      child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Senin, 01/01/2024',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            DateFormat('EEEE, d MMMM y').format(
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    report.transactionTime ?? 0)),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           )),
                     ),
                   ],
@@ -148,11 +155,11 @@ class DetailReportView extends GetView<DetailReportController> {
                           width: 2, // Sesuaikan lebar border
                         ),
                       ),
-                      child: const Align(
+                      child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            'Karena banyaknya sampah tolong kirimkan sekalian truk sampah agar efisien saat membersihkannya.',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            report.description,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           )),
                     ),
                   ],
