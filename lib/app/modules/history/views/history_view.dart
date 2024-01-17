@@ -52,27 +52,42 @@ class HistoryView extends GetView<HistoryController> {
                   children: [Icon(Icons.av_timer), Text('Proses')],
                 ),
               ),
-              Tab(
-                child: Column(
-                  children: [
-                    Icon(Icons.download_done_outlined),
-                    Text('Selesai')
-                  ],
-                ),
+              bottom: const TabBar(
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: Colors.green,
+                tabs: [
+                  Tab(
+                    child: Column(
+                      children: [Icon(Icons.send), Text('Terkirim')],
+                    ),
+                  ),
+                  Tab(
+                    child: Column(
+                      children: [Icon(Icons.av_timer), Text('Proses')],
+                    ),
+                  ),
+                  Tab(
+                    child: Column(
+                      children: [
+                        Icon(Icons.download_done_outlined),
+                        Text('Selesai')
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
+            body: TabBarView(
+              children: _tabs,
+            ),
           ),
-        ),
-        body: TabBarView(
-          children: _tabs,
-        ),
-      ),
-    ));
+        ));
   }
 
   final List<Widget> _tabs = [
-    const SentHistory(),
-    const PendingHistory(),
+    SentHistory(),
+    PendingHistory(),
     const DoneHistory()
   ];
 }

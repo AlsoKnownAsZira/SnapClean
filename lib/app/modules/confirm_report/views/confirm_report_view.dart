@@ -1,16 +1,33 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:snapclean/app/data/firebase/firebase_transaction_repository.dart';
+import 'package:snapclean/app/modules/camera/controllers/camera_controller.dart';
+import 'package:snapclean/app/routes/app_pages.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
-import 'dart:io';
+
+import '../../../widgets/gradient_appbar.dart';
 import '../../../widgets/sized_box.dart';
 import '../controllers/confirm_report_controller.dart';
 
 class ConfirmReportView extends GetView<ConfirmReportController> {
-  const ConfirmReportView({Key? key}) : super(key: key);
+  ConfirmReportView({Key? key, required this.currentLocation})
+      : super(key: key);
+  final ConfirmReportController _controller =
+      Get.put(ConfirmReportController());
+  final FirebaseTransactionRepositry _transactionRepositry =
+      FirebaseTransactionRepositry();
+  String? currentLocation;
+
   @override
   Widget build(BuildContext context) {
-    File? image = Get.arguments;
+    final CameraController controllerCamera = Get.find<CameraController>();
+    final File? image = Get.arguments;
+
     return Scaffold(
       bottomNavigationBar: CustomNavbar(),
         appBar:AppBar(
@@ -53,7 +70,12 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.grey,
-                      image: image != null ? DecorationImage(image: FileImage(image), fit: BoxFit.cover) : null,
+                      image: image != null
+                          ? DecorationImage(
+                              image: FileImage(image), fit: BoxFit.cover)
+                          : DecorationImage(
+                              image: FileImage(controllerCamera.image.value!),
+                              fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -65,14 +87,15 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                   child: Row(
                     children: [
                       Container(
-                          height: 45,
+                          height: 52,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(3),
                             color: Colors.grey,
                           ),
                           child: IconButton(
                               onPressed: () {
-                                Get.offNamed('/current-location');
+                                Get.offNamed('/current-location',
+                                    arguments: controller.image.value);
                               },
                               icon: const Icon(
                                 Icons.pin_drop,
@@ -84,11 +107,11 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                               borderRadius: BorderRadius.circular(3),
                               color: Colors.white,
                               border: Border.all(color: Colors.grey, width: 2)),
-                          height: 45,
-                          child: TextField(
-                              
-                              maxLines: null,
-                              controller: controller.locationController),
+                          height: 52,
+                          child: (currentLocation == '')
+                              ? TextField(
+                                  controller: controller.locationController)
+                              : Center(child: Text(currentLocation!)),
                         ),
                       )
                     ],
@@ -128,7 +151,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                       borderRadius: BorderRadius.circular(3),
                       color: Colors.white,
                       border: Border.all(color: Colors.grey, width: 2)),
-                  height: 150,
+                  height: 140,
                   width: double.infinity,
                   child: TextField(
                     minLines: 10,
@@ -143,17 +166,89 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                 child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 145, 231, 131)),
-                        onPressed: () {},
-                        child: const Text(
-                          'Kirim Laporan',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        ))),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 145, 231, 131)),
+                      onPressed: () async {
+                        // Lakukan konfirmasi laporan atau operasi lain yang diperlukan
+
+                        // Panggil fungsi CreateTransaction
+                        // convert image into file object
+                        File imageFile = controllerCamera.image.value!;
+                        // Read bytes from the file object
+                        Uint8List bytes = await imageFile.readAsBytes();
+
+                        // base64 encode the bytes
+                        String base64String = base64.encode(bytes);
+
+                        var user = controller.userData.value!.uid;
+                        int transactionTime =
+                            DateTime.now().millisecondsSinceEpoch;
+                        // var createTransactionResult =
+                        //     await _transactionRepositry.createReport(
+                        //         uid: user.uid,
+                        //         transactionTime: trasactionTime,
+                        //         address: 'Jalan Bekasi',
+                        //         option: 'Sendiri',
+                        //         description:
+                        //             'Karena banyaknya sampah tolong kirimkan sekalian truk sampah agar efisien saat membersihkannya.',
+                        //         total: 0);
+
+                        _controller.createReport(
+                            'flx-$transactionTime-$user',
+                            base64String,
+                            user,
+                            transactionTime,
+                            (currentLocation == '')
+                                ? controller.locationController.text
+                                : currentLocation!,
+                            "petugas",
+                            controller.descriptionController.text,
+                            0);
+                        Get.offAllNamed(Routes.HOME);
+                        // var createTransactionResult = await CreateTransaction(
+                        //   transactionRepository: _transactionRepositry,
+                        // )(CreateTransactionParam(
+                        //   transaction: Transaction(
+                        //     uid: user.uid,
+                        //     transactionTime: trasactionTime,
+                        //     address: 'Jalan Bekasi',
+                        //     option: 'Sendiri',
+                        //     description:
+                        //         'Karena banyaknya sampah tolong kirimkan sekalian truk sampah agar efisien saat membersihkannya.',
+                        //     total:
+                        //         0, // Ganti dengan UID pengguna sesuai kebutuhan Anda
+                        //     // ... isikan properti transaksi lainnya
+                        //   ),
+                        // ));
+
+                        // Cek hasil createTransactionResult
+                        // if (createTransactionResult.isSucces) {
+                        //   // User registration and creation were successful
+
+                        //   // Navigate to the home page after successful registration
+                        //   context
+                        //       .showSnackBar("User registered successfully!");
+                        //   print("User registered successfully!");
+                        // } else {
+                        //   // Handle user creation failure
+                        //   context.showSnackBar("User ?????");
+                        //   print(
+                        //       "User creation failed: ${createTransactionResult.errorMassage}");
+                        // }
+
+                        // Tambahkan operasi lanjutan atau navigasi setelah transaksi
+                      },
+                      child: Obx(() => _controller.isLoading.value
+                          ? const CircularProgressIndicator()
+                          : const Text(
+                              'Kirim Laporan',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            )),
+                    )),
               ),
               verticalSpace(50),
             ],
