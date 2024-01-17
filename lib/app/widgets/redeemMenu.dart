@@ -7,24 +7,29 @@ import 'package:snapclean/app/modules/change_point/controllers/change_point_cont
 import 'package:get/get.dart';
 
 class RedeemMenu extends GetView<ChangePointController> {
-  Widget buildButtonRow(List<String> texts) {
+  Widget buildButtonRow(List<String> texts, String containerId) {
     return Row(
       children: texts
           .map((text) => Expanded(
-                child: GFButton(
-                  onPressed: () {},
-                  text: text,
-                  shape: GFButtonShape.pills,
-                  size: GFSize.SMALL,
-                  color: Colors.white,
-                  textColor: Colors.black,
-                ),
+                child: Obx(() => GFButton(
+                      onPressed: () {
+                        controller.selectedPill.value = containerId + text;
+                      },
+                      text: text,
+                      shape: GFButtonShape.pills,
+                      size: GFSize.SMALL,
+                      color: controller.selectedPill.value == containerId + text
+                          ? Colors.green
+                          : Colors.white,
+                      textColor: Colors.black,
+                    )),
               ))
           .toList(),
     );
   }
 
-  Widget buildContainer(Widget title, TextEditingController controller) {
+  Widget buildContainer(
+      Widget title, TextEditingController textcontroller, String containerId) {
     return Column(
       children: [
         Row(
@@ -84,13 +89,15 @@ class RedeemMenu extends GetView<ChangePointController> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                buildButtonRow(["5.000", "10.000", "15.000", "20.000"]),
-                buildButtonRow(["25.000", "50.000", "75.000", "100.000"]),
+                buildButtonRow(
+                    ["5.000", "10.000", "15.000", "20.000"], containerId),
+                buildButtonRow(
+                    ["25.000", "50.000", "75.000", "100.000"], containerId),
                 verticalSpace(8),
                 SizedBox(
-                  height: 40,
+                  height: 60,
                   child: TextField(
-                    controller: controller,
+                    controller: textcontroller,
                     decoration: InputDecoration(
                       hintText: 'Masukkan Nomor Telepon/User ID',
                       labelStyle: const TextStyle(color: Colors.black),
@@ -98,6 +105,45 @@ class RedeemMenu extends GetView<ChangePointController> {
                           borderSide: BorderSide(color: Colors.grey.shade700)),
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green)),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.send),
+                        onPressed: () {
+                          Get.dialog(AlertDialog(
+                            title: Text('Konfirmasi'),
+                            content: Text(
+                                'Apakah anda ingin menukarkan poin dengan ${controller.selectedPill.value} ke ${textcontroller.text} ?'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: const Text(
+                                  'Batal',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              ),
+                              TextButton(
+                                child: const Text(
+                                  'Ya',
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: () {
+                                  Get.back();
+                                  Get.snackbar("Penukaran diterima",
+                                      'Silahkan tunggu 1-3 hari kerja',
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      colorText: Colors.white,
+                                      backgroundColor: Colors.green);
+                                },
+                              ),
+                            ],
+                          ));
+                        },
+                      ),
                     ),
                   ),
                 )
@@ -121,12 +167,16 @@ class RedeemMenu extends GetView<ChangePointController> {
               "Pulsa",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            controller.pulsaController),
+            controller.pulsaController,
+            'pulsa'),
         buildContainer(Image.asset('assets/images/logo_ovo.png'),
-            controller.ovoController),
-        buildContainer(Image.asset('assets/images/logo_gopay.png'), controller.gopayController),
-        buildContainer(Image.asset('assets/images/logo_dana.png'), controller.danaController),
-        buildContainer(Image.asset('assets/images/logo_linkaja.png'), controller.linkajaController),
+            controller.ovoController, 'ovo'),
+        buildContainer(Image.asset('assets/images/logo_gopay.png'),
+            controller.gopayController, 'gopay'),
+        buildContainer(Image.asset('assets/images/logo_dana.png'),
+            controller.danaController, 'dana'),
+        buildContainer(Image.asset('assets/images/logo_linkaja.png'),
+            controller.linkajaController, 'linkaja'),
       ],
     );
   }

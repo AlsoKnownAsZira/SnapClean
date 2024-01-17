@@ -7,4 +7,5 @@ class ChangePointController extends GetxController {
   TextEditingController gopayController = TextEditingController();
   TextEditingController ovoController = TextEditingController();
   TextEditingController linkajaController = TextEditingController();
+    var selectedPill = ''.obs;
 }

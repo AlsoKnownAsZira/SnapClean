@@ -11,20 +11,19 @@ class ChangePointView extends GetView<ChangePointController> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Get.dialog(AlertDialog(
-
         title: const Text('Selamat datang di penukaran poin'),
-        content:const  Text("1 Poin bernilai 1 Rupiah, proses penukaran poin akan memakan waktu 1-3 hari kerja."),
-      actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Get.back();
-              },
-            ),
-          ],
-     
+        content: const Text(
+            "1 Poin bernilai 1 Rupiah, proses penukaran poin akan memakan waktu 1-3 hari kerja."),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ],
       ));
     });
     return Scaffold(
@@ -42,19 +41,20 @@ class ChangePointView extends GetView<ChangePointController> {
           ),
         ),
         actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Container(
-                decoration: BoxDecoration(
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Container(
+              decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.elliptical(50, 30))
-                
+                  borderRadius: BorderRadius.all(Radius.elliptical(50, 30))),
+              child: const Center(
+                child: Text(
+                  "420 Poin",
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-              child:const  Center(
-                child: Text("420 Poin",style: TextStyle(fontWeight: FontWeight.bold),),
               ),
-                        ),
-            )
+            ),
+          )
         ],
       ),
       body: ListView(
