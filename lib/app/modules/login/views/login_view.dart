@@ -14,10 +14,8 @@ class LoginView extends GetView<LoginController> {
         body: ListView(children: [
       verticalSpace(100),
       Center(
-        child: Image.network(
-          'https://i.ibb.co/R0YfD6L/Snap-Clean.jpg',
-          width: 150,
-        ),
+        child: Image.asset('assets/images/logo_snapclean.png',
+            width: 200)
       ),
       verticalSpace(100),
       Padding(

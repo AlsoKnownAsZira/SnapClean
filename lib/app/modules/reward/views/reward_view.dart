@@ -44,7 +44,7 @@ class RewardView extends GetView<RewardController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("POINTS",
+                        Text("POIN",
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold)),
                         Text(
@@ -92,12 +92,14 @@ class RewardView extends GetView<RewardController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            "Ke Reward",
+                            "Ke Penukaran Poin",
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.bold),
                           ),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(ChangePointView());
+                              },
                               icon: const Icon(Icons.arrow_forward_ios))
                         ],
                       ),

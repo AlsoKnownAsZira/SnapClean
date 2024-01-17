@@ -60,7 +60,7 @@ class CameraView extends GetView<CameraController> {
                   if(controller.image.value != null){
                     Get.toNamed("/confirm-report",arguments: controller.image.value!);
                   }else{
-                    Get.snackbar("Gagal", "Ambil gambar terlebih dahulu");
+                    Get.snackbar("Gagal", "Ambil gambar terlebih dahulu",backgroundColor: Colors.red,colorText: Colors.white,snackPosition: SnackPosition.BOTTOM);
                   }
                   },
                   child: Text("Selanjutnya"))

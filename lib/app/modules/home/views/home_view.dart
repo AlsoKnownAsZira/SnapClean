@@ -149,11 +149,11 @@ class HomeView extends GetView<HomeController> {
                             padding: const EdgeInsets.all(5.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
+                              child: Image.asset(
                                 carouselitems[itemIndex],
                                 width: double.infinity,
                                 height: 100.0,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.fill,
                               ),
                             )),
                 options: CarouselOptions(
@@ -202,7 +202,9 @@ class HomeView extends GetView<HomeController> {
   }
 
   final List<String> carouselitems = [
-    'https://2.bp.blogspot.com/-wzyqoRtNwA4/VjLDXp3k4GI/AAAAAAAAATo/y_BuHsJyDvE/w1200-h630-p-k-no-nu/keber%2B1.png',
-    'https://i.pinimg.com/originals/e3/ca/40/e3ca40b9890ea9088f82895772c3a246.jpg'
+    'assets/images/carousel1.png',
+    'assets/images/carousel2.png',
+    'assets/images/carousel3.png',
+
   ];
 }

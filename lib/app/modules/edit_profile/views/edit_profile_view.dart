@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:snapclean/app/widgets/gradient_appbar.dart';
 
 import 'package:snapclean/app/widgets/sized_box.dart';
 import 'package:snapclean/app/widgets/text_field.dart';
@@ -14,7 +13,21 @@ class EditProfileView extends GetView<EditProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GradientAppBar(title: ''),
+        appBar: AppBar(
+    
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color.fromRGBO(34, 193, 195, 1),
+              Color.fromRGBO(95, 253, 45, 0.74)
+            ],
+          ),
+        ),
+      ),
+    ),
         body: ListView(
           children: [
             Column(
@@ -51,7 +64,7 @@ class EditProfileView extends GetView<EditProfileController> {
                               backgroundColor:
                                   const Color.fromARGB(255, 145, 231, 131)),
                           onPressed: () {
-                            Get.snackbar("Disimpan!", 'Profil berhasil diubah', snackPosition: SnackPosition.BOTTOM);
+                            Get.snackbar("Disimpan!", 'Profil berhasil diubah', snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.green,colorText: Colors.white);
                           },
                           child: const Text(
                             "Konfirmasi",
