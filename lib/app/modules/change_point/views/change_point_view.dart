@@ -44,9 +44,10 @@ class ChangePointView extends GetView<ChangePointController> {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: Container(
+              height: 40,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.elliptical(50, 30))),
+                  borderRadius: BorderRadius.circular(60)),
               child: const Center(
                 child: Text(
                   "420 Poin",
