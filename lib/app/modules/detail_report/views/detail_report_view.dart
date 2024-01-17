@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
-import 'package:snapclean/app/widgets/gradient_appbar.dart';
+
 import 'package:snapclean/app/widgets/show_snack_bar.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
@@ -12,8 +12,23 @@ class DetailReportView extends GetView<DetailReportController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
-        appBar: GradientAppBar(title: ''),
+      bottomNavigationBar: CustomNavbar(initialActiveIndex: 1,),
+        appBar: AppBar(
+
+   
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color.fromRGBO(34, 193, 195, 1),
+              Color.fromRGBO(95, 253, 45, 0.74)
+            ],
+          ),
+        ),
+      ),
+    ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -188,8 +203,8 @@ class DetailReportView extends GetView<DetailReportController> {
                                 IconButton(
                                     onPressed: () {
                                       Get.offNamed('/history');
-                                      context.showSnackBar(
-                                          'Laporan anda telah terhapus!');
+                                      
+                                      Get.snackbar("Selesai!", "Laporan anda berhasil dihapus", backgroundColor: Colors.green,colorText: Colors.white,snackPosition: SnackPosition.BOTTOM);
                                     },
                                     icon: const Icon(
                                       Icons.done,

@@ -21,7 +21,7 @@ class HistoryView extends GetView<HistoryController> {
       initialIndex: initialTabIndex,
       child: Scaffold(
         appBar: AppBar(
-          leading: SizedBox(),
+          leading:const  SizedBox(),
           backgroundColor: Colors.white,
           flexibleSpace: Container(
             decoration: const BoxDecoration(

@@ -5,7 +5,7 @@ import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'dart:io';
 import '../../../widgets/sized_box.dart';
 import '../controllers/confirm_report_controller.dart';
-import '../../../widgets/gradient_appbar.dart';
+
 class ConfirmReportView extends GetView<ConfirmReportController> {
   const ConfirmReportView({Key? key}) : super(key: key);
   @override
@@ -13,7 +13,22 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
     File? image = Get.arguments;
     return Scaffold(
       bottomNavigationBar: CustomNavbar(),
-        appBar: GradientAppBar(title: ''),
+        appBar:AppBar(
+      
+
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.center,
+            end: Alignment.bottomCenter,
+            colors: <Color>[
+              Color.fromRGBO(34, 193, 195, 1),
+              Color.fromRGBO(95, 253, 45, 0.74)
+            ],
+          ),
+        ),
+      ),
+    ),
         body: SingleChildScrollView(
           child: Column(
             children: [
