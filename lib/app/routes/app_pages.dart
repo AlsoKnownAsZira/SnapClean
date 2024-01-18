@@ -93,7 +93,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CHANGE_POINT,
-      page: () => const ChangePointView(),
+      page: () => ChangePointView(),
       binding: ChangePointBinding(),
     ),
   ];

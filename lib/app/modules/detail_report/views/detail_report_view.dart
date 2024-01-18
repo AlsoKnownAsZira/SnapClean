@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -14,6 +17,12 @@ class DetailReportView extends GetView<DetailReportController> {
   Widget build(BuildContext context) {
     // Transaction? report = controller.transaction.value;
     Transaction? report = Get.arguments as Transaction;
+    Uint8List bytes = base64.decode(report.transactionImage!);
+
+    // Create a file and write the bytes to it
+    // File file = File('image');
+    // file.writeAsBytesSync(bytes);
+    MemoryImage memoryImage = MemoryImage(bytes);
     return Scaffold(
         bottomNavigationBar: CustomNavbar(
           initialActiveIndex: 1,
@@ -52,16 +61,13 @@ class DetailReportView extends GetView<DetailReportController> {
                 width: 150,
                 height: 150,
                 decoration: BoxDecoration(
+                  image: DecorationImage(image: memoryImage, fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(
                       5), // Sesuaikan ukuran border radius
                   border: Border.all(
                     color: Colors.grey, // Sesuaikan warna border
                     width: 3, // Sesuaikan lebar border
                   ),
-                ),
-                child: Image.network(
-                  'https://tse4.mm.bing.net/th?id=OIP.dcO6APRL4BTHohClTGOa8wAAAA&pid=Api&P=0&h=180',
-                  fit: BoxFit.cover,
                 ),
               ),
               verticalSpace(15),
@@ -168,69 +174,68 @@ class DetailReportView extends GetView<DetailReportController> {
               verticalSpace(20),
               SizedBox(
                 width: 200,
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.red), // Warna latar belakang
+                child: (report.status == 0)
+                    ? ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.red), // Warna latar belakang
 
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10.0), // Sudut-sudut border
-                          // Lainnya sesuai kebutuhan
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  10.0), // Sudut-sudut border
+                              // Lainnya sesuai kebutuhan
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text(
-                                "Hapus Laporan",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              content: const Text(
-                                "Apa anda yakin ingin menghapus laporan?",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              actions: [
-                                IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    icon: const Icon(
-                                      Icons.cancel_outlined,
-                                      size: 35,
-                                      color: Colors.red,
-                                    )),
-                                horizontalSpace(5),
-                                IconButton(
-                                    onPressed: () {
-                                      Get.offNamed('/history');
-
-                                      Get.snackbar("Selesai!",
-                                          "Laporan anda berhasil dihapus",
-                                          backgroundColor: Colors.green,
-                                          colorText: Colors.white,
-                                          snackPosition: SnackPosition.BOTTOM);
-                                    },
-                                    icon: const Icon(
-                                      Icons.done,
-                                      size: 35,
-                                      color: Colors.green,
-                                    )),
-                              ],
-                            );
-                          });
-                    },
-                    child: const Text(
-                      'HAPUS LAPORAN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
-                    )),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text(
+                                    "Hapus Laporan",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  content: const Text(
+                                    "Apa anda yakin ingin menghapus laporan?",
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  actions: [
+                                    IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: const Icon(
+                                          Icons.cancel_outlined,
+                                          size: 35,
+                                          color: Colors.red,
+                                        )),
+                                    horizontalSpace(5),
+                                    IconButton(
+                                        onPressed: () {
+                                          _controller.deleteReport(report.id!);
+                                          Get.offAllNamed('/history');
+                                        },
+                                        icon: const Icon(
+                                          Icons.done,
+                                          size: 35,
+                                          color: Colors.green,
+                                        )),
+                                  ],
+                                );
+                              });
+                        },
+                        child: const Text(
+                          'HAPUS LAPORAN',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15),
+                        ))
+                    : const SizedBox.shrink(),
               )
             ],
           ),

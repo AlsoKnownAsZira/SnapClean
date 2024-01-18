@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:getwidget/size/gf_size.dart';
-import 'package:snapclean/app/widgets/sized_box.dart';
 import 'package:snapclean/app/modules/change_point/controllers/change_point_controller.dart';
-import 'package:get/get.dart';
+import 'package:snapclean/app/widgets/sized_box.dart';
 
 class RedeemMenu extends GetView<ChangePointController> {
+  const RedeemMenu({super.key});
+
   Widget buildButtonRow(List<String> texts, String containerId) {
     return Row(
       children: texts
@@ -106,12 +108,12 @@ class RedeemMenu extends GetView<ChangePointController> {
                       focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green)),
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.send),
+                        icon: const Icon(Icons.send),
                         onPressed: () {
                           Get.dialog(AlertDialog(
-                            title: Text('Konfirmasi'),
+                            title: const Text('Konfirmasi'),
                             content: Text(
-                                'Apakah anda ingin menukarkan poin dengan ${controller.selectedPill.value} ke ${textcontroller.text} ?'),
+                                'Apakah anda ingin menukarkan poin dengan ${controller.selectedPill.value} ke ${textcontroller.text}?'),
                             actions: <Widget>[
                               TextButton(
                                 child: const Text(
@@ -128,7 +130,7 @@ class RedeemMenu extends GetView<ChangePointController> {
                                 child: const Text(
                                   'Ya',
                                   style: TextStyle(
-                                      color: Colors.blue,
+                                      color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
@@ -151,7 +153,7 @@ class RedeemMenu extends GetView<ChangePointController> {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         )
       ],

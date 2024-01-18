@@ -9,7 +9,6 @@ import 'package:snapclean/app/data/firebase/firebase_transaction_repository.dart
 import 'package:snapclean/app/data/firebase/firebase_user_repository.dart';
 import 'package:snapclean/app/domain/entities/user.dart';
 import 'package:snapclean/app/modules/current_location/views/current_location_view.dart';
-import 'package:snapclean/app/routes/app_pages.dart';
 
 class ConfirmReportController extends GetxController {
   Rx<User?> userData = Rx<User?>(null);
@@ -94,12 +93,24 @@ class ConfirmReportController extends GetxController {
       if (createTransactionResult.isSucces) {
         // User registration and creation were successful
 
-        // Navigate to the home page after successful registration
-        Get.offAllNamed(Routes.HOME);
-        print("User registered successfully!");
+        // Navigate to the history page after successful
+        Get.snackbar(
+          "Berhasil",
+          "Laporan berhasil ditambahkan",
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        print("User create transaction successfully!");
       } else {
         // Handle user creation failure
-
+        Get.snackbar(
+          "Gagal",
+          "Laporan gagal ditambahkan",
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+        );
         print("User creation failed: ${createTransactionResult.errorMassage}");
       }
     } catch (e) {

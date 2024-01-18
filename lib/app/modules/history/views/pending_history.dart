@@ -32,8 +32,6 @@ class PendingHistory extends StatelessWidget {
                     Uint8List bytes = base64.decode(report.transactionImage!);
 
                     // Create a file and write the bytes to it
-                    // File file = File('image');
-                    // file.writeAsBytesSync(bytes);
                     MemoryImage memoryImage = MemoryImage(bytes);
                     return Padding(
                       padding:
@@ -103,8 +101,9 @@ class PendingHistory extends StatelessWidget {
                         ),
                       ),
                     );
+                  } else {
+                    return const SizedBox.shrink();
                   }
-                  return null;
                 },
               ),
             );

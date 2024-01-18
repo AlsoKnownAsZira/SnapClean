@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:snapclean/app/widgets/redeemMenu.dart';
 import 'package:snapclean/app/widgets/sized_box.dart';
 
 import '../controllers/change_point_controller.dart';
 
 class ChangePointView extends GetView<ChangePointController> {
-  const ChangePointView({Key? key}) : super(key: key);
+  ChangePointView({Key? key}) : super(key: key);
+  final ChangePointController _controller = Get.put(ChangePointController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,28 +41,45 @@ class ChangePointView extends GetView<ChangePointController> {
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Container(
-              height: 40,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(60)),
-              child: const Center(
-                child: Text(
-                  "420 Poin",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+          Obx(() {
+            if (_controller.userData.value != null) {
+              var user = _controller.userData.value!;
+              return Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Container(
+                  height: 45,
+                  width: 70,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.all(Radius.elliptical(50, 20))),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          user.point.toString(),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Poin',
+                            style: TextStyle(fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
+              );
+            } else {
+              // If user data is not available, display a loading indicator or placeholder
+              return const CircularProgressIndicator();
+            }
+          })
         ],
       ),
       body: ListView(
         children: [
           verticalSpace(20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
                 RedeemMenu(),

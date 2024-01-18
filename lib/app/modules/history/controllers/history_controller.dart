@@ -58,23 +58,4 @@ class HistoryController extends GetxController {
       print("An error occurred: $e");
     }
   }
-
-  // Future<void> fetchReports() async {
-  //   // Fetch data from Firebase and update the 'reports' list
-  //   // You can use your own logic to retrieve the data from Firebase
-  //   // For demonstration purposes, a dummy list is used here
-  //   String? uid = _firebaseAuth.getLoggedInUserId();
-
-  //   if (uid != null) {
-  //     if (_transactionRepository != null) {
-  //       var result = await _transactionRepository.getUserTransactions(uid: uid);
-  //       if (result.isSucces) {
-  //         reports.assignAll(result);
-  //       } else {
-  //         // Handle the case where fetching user data failed
-  //         print("Failed to fetch user data: ${result.errorMassage}");
-  //       }
-  //     }
-  //   }
-  // }
 }

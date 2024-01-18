@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/data/firebase/firebase_transaction_repository.dart';
 import 'package:snapclean/app/modules/camera/controllers/camera_controller.dart';
-import 'package:snapclean/app/routes/app_pages.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 
-import '../../../widgets/gradient_appbar.dart';
 import '../../../widgets/sized_box.dart';
 import '../controllers/confirm_report_controller.dart';
 
@@ -29,23 +27,21 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
     final File? image = Get.arguments;
 
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(),
-        appBar:AppBar(
-      
-
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.center,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              Color.fromRGBO(34, 193, 195, 1),
-              Color.fromRGBO(95, 253, 45, 0.74)
-            ],
+        bottomNavigationBar: CustomNavbar(),
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.center,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Color.fromRGBO(34, 193, 195, 1),
+                  Color.fromRGBO(95, 253, 45, 0.74)
+                ],
+              ),
+            ),
           ),
         ),
-      ),
-    ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -170,8 +166,6 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                           backgroundColor:
                               const Color.fromARGB(255, 145, 231, 131)),
                       onPressed: () async {
-                        // Lakukan konfirmasi laporan atau operasi lain yang diperlukan
-
                         // Panggil fungsi CreateTransaction
                         // convert image into file object
                         File imageFile = controllerCamera.image.value!;
@@ -184,15 +178,6 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                         var user = controller.userData.value!.uid;
                         int transactionTime =
                             DateTime.now().millisecondsSinceEpoch;
-                        // var createTransactionResult =
-                        //     await _transactionRepositry.createReport(
-                        //         uid: user.uid,
-                        //         transactionTime: trasactionTime,
-                        //         address: 'Jalan Bekasi',
-                        //         option: 'Sendiri',
-                        //         description:
-                        //             'Karena banyaknya sampah tolong kirimkan sekalian truk sampah agar efisien saat membersihkannya.',
-                        //         total: 0);
 
                         _controller.createReport(
                             'flx-$transactionTime-$user',
@@ -205,39 +190,7 @@ class ConfirmReportView extends GetView<ConfirmReportController> {
                             "petugas",
                             controller.descriptionController.text,
                             0);
-                        Get.offAllNamed(Routes.HOME);
-                        // var createTransactionResult = await CreateTransaction(
-                        //   transactionRepository: _transactionRepositry,
-                        // )(CreateTransactionParam(
-                        //   transaction: Transaction(
-                        //     uid: user.uid,
-                        //     transactionTime: trasactionTime,
-                        //     address: 'Jalan Bekasi',
-                        //     option: 'Sendiri',
-                        //     description:
-                        //         'Karena banyaknya sampah tolong kirimkan sekalian truk sampah agar efisien saat membersihkannya.',
-                        //     total:
-                        //         0, // Ganti dengan UID pengguna sesuai kebutuhan Anda
-                        //     // ... isikan properti transaksi lainnya
-                        //   ),
-                        // ));
-
-                        // Cek hasil createTransactionResult
-                        // if (createTransactionResult.isSucces) {
-                        //   // User registration and creation were successful
-
-                        //   // Navigate to the home page after successful registration
-                        //   context
-                        //       .showSnackBar("User registered successfully!");
-                        //   print("User registered successfully!");
-                        // } else {
-                        //   // Handle user creation failure
-                        //   context.showSnackBar("User ?????");
-                        //   print(
-                        //       "User creation failed: ${createTransactionResult.errorMassage}");
-                        // }
-
-                        // Tambahkan operasi lanjutan atau navigasi setelah transaksi
+                        Get.offAllNamed('/history');
                       },
                       child: Obx(() => _controller.isLoading.value
                           ? const CircularProgressIndicator()

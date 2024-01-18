@@ -100,11 +100,18 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Get.off(
-            () => ConfirmReportView(
-                currentLocation:
-                    "Lat: ${_position!.latitude}, Long: ${_position!.longitude}"),
-          );
+          if (_position != null) {
+            Get.off(
+              () => ConfirmReportView(
+                  currentLocation:
+                      "Lat: ${_position!.latitude}, Long: ${_position!.longitude}"),
+            );
+          } else {
+            Get.snackbar("Gagal", "Tentukan lokasi terlebih dahulu",
+                backgroundColor: Colors.red,
+                colorText: Colors.white,
+                snackPosition: SnackPosition.BOTTOM);
+          }
         },
         backgroundColor: Colors.green,
         label: const Text(
