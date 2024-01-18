@@ -27,6 +27,12 @@ Tidak hanya menciptakan lingkungan yang lebih bersih, tetapi juga memberdayakan 
 - Fitur poin yang bisa ditukarkan hadiah menarik
 - Pengguna bisa membersihkan sendiri atau melaporkan kepada petugas kebersihan
 
+## Tautan Install .apk
+- https://drive.google.com/drive/folders/1Cf6MFhZBcp7Uigs30s-7drEP5Vf5H7t-?usp=sharing
+
+## Tautan Panduan Pengguna
+- https://docs.google.com/document/d/1NYAKz-riWH5Ir0N3SmI17ji0OS6C2iXwsRnJfwekyxE/edit?usp=sharing
+
 ## Screenshots
 
 
