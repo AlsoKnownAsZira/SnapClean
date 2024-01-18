@@ -15,41 +15,27 @@ class HistoryView extends GetView<HistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavbar(initialActiveIndex: 1,),
+        bottomNavigationBar: CustomNavbar(
+          initialActiveIndex: 1,
+        ),
         body: DefaultTabController(
-      length: _tabs.length,
-      initialIndex: initialTabIndex,
-      child: Scaffold(
-        appBar: AppBar(
-          leading:const  SizedBox(),
-          backgroundColor: Colors.white,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [0.3, 0.6, 0.6],
-                colors: [
-                  Color.fromRGBO(34, 193, 195, 1),
-                  Color.fromRGBO(95, 253, 45, 0.74),
-                  Colors.white,
-                ],
-              ),
-            ),
-          ),
-          bottom: const TabBar(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.green,
-            tabs: [
-              Tab(
-                child: Column(
-                  children: [Icon(Icons.send), Text('Terkirim')],
-                ),
-              ),
-              Tab(
-                child: Column(
-                  children: [Icon(Icons.av_timer), Text('Proses')],
+          length: _tabs.length,
+          initialIndex: initialTabIndex,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.3, 0.6, 0.6],
+                    colors: [
+                      Color.fromRGBO(34, 193, 195, 1),
+                      Color.fromRGBO(95, 253, 45, 0.74),
+                      Colors.white,
+                    ],
+                  ),
                 ),
               ),
               bottom: const TabBar(
@@ -85,9 +71,5 @@ class HistoryView extends GetView<HistoryController> {
         ));
   }
 
-  final List<Widget> _tabs = [
-    SentHistory(),
-    PendingHistory(),
-    const DoneHistory()
-  ];
+  final List<Widget> _tabs = [SentHistory(), PendingHistory(), DoneHistory()];
 }

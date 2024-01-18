@@ -1,13 +1,13 @@
+import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:snapclean/app/modules/change_point/views/change_point_view.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
-import '../controllers/reward_controller.dart';
-import '../../../widgets/sized_box.dart';
+
 import '../../../widgets/gradient_appbar.dart';
-import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+import '../../../widgets/sized_box.dart';
+import '../controllers/reward_controller.dart';
 
 class RewardView extends GetView<RewardController> {
   const RewardView({Key? key}) : super(key: key);
@@ -23,52 +23,61 @@ class RewardView extends GetView<RewardController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(20),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Center(
-                  child: Container(
-                    width: 250,
-                    height: 250,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(125),
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+              Obx(() {
+                if (controller.userData.value != null) {
+                  var user = controller.userData.value!;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Center(
+                      child: Container(
+                        width: 250,
+                        height: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(125),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
                         ),
-                      ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("POIN",
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold)),
+                            Text(
+                              user.point.toString(),
+                              style: const TextStyle(
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 215, 232, 25)),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("POIN",
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold)),
-                        Text(
-                          controller.points.toString(),
-                          style: TextStyle(
-                              fontSize: 60,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 215, 232, 25)),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                  );
+                } else {
+                  // If user data is not available, display a loading indicator or placeholder
+                  return const CircularProgressIndicator();
+                }
+              }),
               verticalSpace(20),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  "Tukarkan poin ada !",
+                  "Tukarkan poin anda!",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: GestureDetector(
                   onTap: () => Get.to(ChangePointView()),
                   child: Container(
@@ -80,7 +89,8 @@ class RewardView extends GetView<RewardController> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: 1,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -127,7 +137,7 @@ class RewardView extends GetView<RewardController> {
                   )),
               verticalSpace(20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Container(
                   width: double.infinity,
                   height: 200,

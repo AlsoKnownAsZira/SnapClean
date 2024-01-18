@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:snapclean/app/widgets/custom_navbar.dart';
 import 'package:snapclean/app/widgets/gradient_appbar.dart';
-import '../controllers/camera_controller.dart';
+
 import '../../../widgets/sized_box.dart';
+import '../controllers/camera_controller.dart';
 
 class CameraView extends GetView<CameraController> {
-  CameraView({Key? key}) : super(key: key);
+  const CameraView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,12 @@ class CameraView extends GetView<CameraController> {
                             controller.image.value!,
                             fit: BoxFit.cover,
                           )
-                        : Container()),
+                        : Container(
+                            child: const Icon(
+                              Icons.camera_alt,
+                              size: 100,
+                            ),
+                          )),
                   ),
                 ),
               ),
@@ -63,7 +69,8 @@ class CameraView extends GetView<CameraController> {
                       },
                       child: const Text(
                         "Ambil Gambar",
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       )),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -79,9 +86,10 @@ class CameraView extends GetView<CameraController> {
                               snackPosition: SnackPosition.BOTTOM);
                         }
                       },
-                      child:const   Text(
+                      child: const Text(
                         "Selanjutnya",
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       ))
                 ],
               ),

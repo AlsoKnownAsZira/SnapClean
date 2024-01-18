@@ -15,7 +15,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(title: ''),
-      bottomNavigationBar:  CustomNavbar( initialActiveIndex: 0,),
+      bottomNavigationBar: CustomNavbar(
+        initialActiveIndex: 0,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -149,23 +151,21 @@ class HomeView extends GetView<HomeController> {
                             padding: const EdgeInsets.all(5.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                carouselitems[itemIndex],
-                                width: double.infinity,
-                                height: 100.0,
-                                fit: BoxFit.fill,
-                              ),
+                              child: Image.asset(carouselitems[itemIndex],
+                                  width: double.infinity,
+                                  height: 125.0,
+                                  fit: BoxFit.contain),
                             )),
                 options: CarouselOptions(
-                  height: 120,
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  viewportFraction: 1,
-                  aspectRatio: 2.0,
-                  initialPage: 2,
-                ),
+                    height: 125,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    viewportFraction: 1,
+                    aspectRatio: 2.0,
+                    initialPage: 2,
+                    autoPlayInterval: const Duration(seconds: 3)),
               ),
-              verticalSpace(12),
+              verticalSpace(10),
               Obx(() => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -205,6 +205,29 @@ class HomeView extends GetView<HomeController> {
     'assets/images/carousel1.png',
     'assets/images/carousel2.png',
     'assets/images/carousel3.png',
-
   ];
 }
+
+// // Widget untuk menampilkan informasi jumlah status
+// Widget buildStatusInfo(String status, int count) {
+//   return Column(
+//     children: [
+//       Text(
+//         status,
+//         style: const TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 18,
+//         ),
+//       ),
+//       verticalSpace(5),
+//       Text(
+//         count.toString(),
+//         style: const TextStyle(
+//           fontWeight: FontWeight.bold,
+//           fontSize: 16,
+//           color: Colors.green,
+//         ),
+//       ),
+//     ],
+//   );
+// }
